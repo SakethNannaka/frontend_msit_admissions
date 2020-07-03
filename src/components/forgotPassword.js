@@ -154,7 +154,7 @@ class ForgotPassword extends React.Component {
     const { errors } = this.state;
     return (
       <reac.Container>
-        <reac.Row style = {{justifyContent: "center", justifyItems: "center",  margin: "100px", backgroundColor: "Azure", padding: "20px"}}>
+        <reac.Row style = {{justifyContent: "center", justifyItems: "center",  margin: "100px", padding: "20px"}}>
           {/* <reac.Col></reac.Col>
           <reac.Col style={{ margin: "100px", padding: "40px 55px 45px 55px" }}> */}
           <div>

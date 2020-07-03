@@ -4,7 +4,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import * as reac from "react-bootstrap";
 import AuthApi from "../utils/AuthApi"
-import msitprocess from './msitprocess.jpeg'
 
 export default function Login() {
 
@@ -51,23 +50,19 @@ export default function Login() {
 
     return (
       <reac.Container>
+        <reac.Row style = {{justifyContent: "center", justifyItems: "center",  margin: "100px",  padding: "20px"}}>
+          {/* <reac.Col></reac.Col> */}
+          {/* <reac.Col style={{ margin: "100px", padding: "40px 55px 45px 55px" }}> */}
             <div>
-              <h2 align="center">Registration Process</h2>
-            </div>
-              <br></br>
-              <hr></hr>
-              <br></br>
-
-              <img src={msitprocess} alt="msitlogo" height={200} />
-            <div>
-            <br></br>
               <div>
-              <hr></hr>
-
-                <h2 align="center">Login</h2>
-
+                <a href="https://msitprogram.net/">
+                  <img src={logo} alt="msitlogo" height="50px" />
+                </a>
               </div>
-
+              <br></br>
+              <hr></hr>
+              <h4 align="center">Login</h4>
+              <br></br>
               <p style={{ color: "red" }} id="alerts"></p>
               <reac.Form onSubmit={loginSubmit} className="content">
                 <reac.Form.Group className="form-group">
@@ -108,16 +103,16 @@ export default function Login() {
                     Forgot Password?
                   </Link>
                 </div>
-                &nbsp;
-                &nbsp;
-                &nbsp;
-                <div className="mr-auto">
+                {/* <div className="mr-auto">
                   <Link to="/register" className="register">
                     I want to register
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
+          {/* </reac.Col> */}
+          {/* <reac.Col></reac.Col> */}
+        </reac.Row>
       </reac.Container>
     );
 };

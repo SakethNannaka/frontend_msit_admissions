@@ -4,7 +4,7 @@ import axios from "axios";
 // import "./login.css";
 import logo from "./logo.gif";
 import * as reac from 'react-bootstrap';
-import msitprocess from './msitprocess.jpeg'
+
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -156,24 +156,20 @@ export default class SignUp extends Component {
   render() {
     return (
       <reac.Container>
-                <div>
-                  <h2 align="center">Registration Process</h2>
-                </div>
-                  <br></br>
-                  <hr></hr>
-                  <br></br>
-                  <img src={msitprocess} alt="msitlogo" height={200} />
-                <div>
-                  <div>
-                  <br></br>
-
+            <reac.Row style = {{justifyContent: "center", justifyItems: "center", margin: "100px",  padding: "20px"}}>
+              {/* <reac.Col></reac.Col>
+              <reac.Col style = {{margin: "100px", padding: "40px 55px 45px 55px"}}> */}
+              <div>
+                    <div>
+                        <a href="https://msitprogram.net/">
+                          <img src={logo} alt="msitlogo" height="50px" />
+                        </a>
                     </div>
-
+                    <br></br>
                     <hr></hr>
-                    <h2 align="center">Register</h2>
-
                     <reac.Form onSubmit = {this.registerSubmit}>
                       <br></br>
+                      <h3 align = "center">Register</h3>
                       <p style = {{color : "red"}} id = "alerts"></p>
                       <reac.Form.Group className="formBasicUsername">
                       <reac.Form.Label>User Name</reac.Form.Label>
@@ -275,12 +271,14 @@ export default class SignUp extends Component {
                         Submit
                       </reac.Button>
                       <p className="forgot-password text-right">
-                          Already registered 
-                          &nbsp;&nbsp;
-                          <Link to="/login">Login</Link>
+                          Already registered <Link to="/login">Login</Link>
                       </p>
                       </reac.Form>
+                      {/* </reac.Col>
+                      <reac.Col></reac.Col> */}
             </div>
-        </reac.Container>    );
+          </reac.Row>
+        </reac.Container>
+    );
   }
 }

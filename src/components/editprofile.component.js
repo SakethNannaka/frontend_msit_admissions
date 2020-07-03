@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Navbar from "./navbar1.component";
 import "./profile.css"
-import { Button} from 'react-bootstrap';
+import { Button, Alert} from 'react-bootstrap';
 import {
   DatePicker,
   MuiPickersUtilsProvider,
@@ -23,9 +23,6 @@ class Edit extends Component {
     const userDetails=JSON.parse(localStorage.getItem("state"));
     return ( 
       <div>
-
-      console.log("No user profile")
-    return (
       <div>
         
         <div className="container" width="1250px">
@@ -34,40 +31,34 @@ class Edit extends Component {
               <div className="module-inner">
                 <div className="side-bar">
   
-                  <div className="user-info">
-  
-                    <img
-                      className="img-profile img-circle img-responsive center-block"
-                      id = "pp"
-                      src={this.props.prop.state.image_url}
-                      alt=""
-                    ></img>
-                    {/* <ul className="meta list list-unstyled">
-                      <li className="name">
-                        Rebecca Sanders
-                        &nbsp;
-                        &nbsp;
-                        <label className="label label-info">UX Designer</label>
-                      </li>
-                      <li className="email">
-                        <a href="#">Rebecca.S@website.com</a>
-                      </li>
-                    </ul> */}
+                <div className="user-info">
+
+                  <img
+                    className="img-profile img-circle img-responsive center-block"
+                    id = "pp"
+                    src={userDetails.image_url}
+                    alt=""
+                  ></img>
+                  <ul className="meta list list-unstyled">
+                    <li className="name">
+                      <h4>{userDetails.full_name}</h4>
+                    </li>
+                    <li className="email">
+                      <a href >{userDetails.email}</a>
+                    </li>
+                    {/* <label className="label label-info">Applicant</label> */      }
+
+                  </ul>
                   </div>
                   <nav className="side-menu">
                     <ul className="nav">
 
-                    <li className="active">
-                      <Link className="nav-link" to={"/profile"}>
+                      <li>
+                          <a href onClick={this.props.prop.handleProfile}>
                           <span className="fa fa-user"></span> Profile
-                          </Link>
-                      </li>
-{/*                       
-                      <li className="active">
-                      <a href onClick={this.props.prop.handleEditProfile}>
-                          <span className="fa fa-cog"></span> Edit Profile
                           </a>
                       </li>
+
                       <li>
                       <Link className="nav-link" to={"/gat"}>
                           <span className="fa fa-th"></span> GAT
@@ -77,7 +68,13 @@ class Edit extends Component {
                       <Link className="nav-link" to={"/gat"}>
                           <span className="fa fa-clock-o"></span> Walkin                      
                           </Link>
-                      </li> */}
+                      </li>
+
+                      <li className="active">
+                      <a href onClick={this.props.prop.handleEditProfile}>
+                          <span className="fa fa-cog"></span> Edit Profile
+                          </a>
+                      </li>
                     </ul>
                   </nav>
                 </div>
@@ -89,7 +86,9 @@ class Edit extends Component {
                   <form className="form-horizontal" onSubmit={this.props.prop.onSubmit}>
                     <fieldset className="fieldset">
                       <h3 className="fieldset-title">Personal Info</h3>
-  
+
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span id = "alerts3" style = {{color: "red", fontSize: "15px"}}></span>
                       <div className="form-group avatar">
                         <figure className="figure col-md-2 col-sm-3 col-xs-12">
                           <img
@@ -130,10 +129,10 @@ class Edit extends Component {
                           </button> */}
                         </div>
                       </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span id = "alerts1" style = {{color: "red", fontSize: "15px"}}></span>
                       <br></br>
                       <br></br>
-                      <br></br>
-  
                       <div className="form-group">
                         <label className="col-md-2 col-sm-3 col-xs-12 control-label">
                           Full Name
@@ -281,7 +280,7 @@ class Edit extends Component {
                           <input
                             type="number"
                             className="form-control"
-                            placeholder="Landline No."
+                            placeholder="Landline No or Alternative number"
                             name="landline_no"
                             style={{ width: "250px" }}
                             defaultValue={userDetails.landline_no}
@@ -290,7 +289,10 @@ class Edit extends Component {
                           ></input>
                         </div>
                       </div>
-  
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span id = "alerts2" style = {{color: "red", fontSize: "15px"}}></span>
+                      <br></br>
+                      <br></br>
                       <div className="form-group">
                         <label className="col-md-2 col-sm-3 col-xs-12 control-label">
                           Address
@@ -352,7 +354,7 @@ class Edit extends Component {
                           ></input>
                         </div>
                       </div>
-  
+
                     </fieldset>
                     <fieldset className="fieldset">
                       <h3 className="fieldset-title">Educational Info</h3>
@@ -373,7 +375,7 @@ class Edit extends Component {
                             name="board_number"
                             placeholder="Hallticket"
                             maxlength="13"
-                            onChange={this.props.prop.onChange}
+                            onChange={this.props.prop.onChangeNumber}
                             defaultValue={userDetails.board_number}
                             required
                           ></input>

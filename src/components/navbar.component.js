@@ -23,6 +23,7 @@ export default class Navbar extends Component {
               <reac.Nav style = {{}}>
               <reac.NavItem><Link className="nav-link" to={"/login"}>Signin</Link></reac.NavItem>
               <reac.NavItem><Link className="nav-link" to={"/register"}>Signup</Link></reac.NavItem>
+              <reac.NavItem><Link className="nav-link" to={"/process"}>Apply process</Link></reac.NavItem>
                 {/* <reac.Nav.Link href="/login">SIGNIN</reac.Nav.Link>
                 <reac.Nav.Link href="/register">SIGNUP</reac.Nav.Link> */}
               </reac.Nav>
@@ -32,27 +33,3 @@ export default class Navbar extends Component {
         );
     }
 }
-
-// export default class Navbar extends Component {
-
-//     render() {
-//         return (
-//             <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-//                 <div className="container">
-//                 <img src = "https://msitprogram.net/admissions/logo.gif" alt = "MSIT Logo" height = "50"></img>
-//                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-//                     <ul className="navbar-nav ml-auto">
-//                     <li className="nav-item">
-//                         <Link className="nav-link" to={"/Login"}>Login</Link>
-//                     </li>
-//                     <li className="nav-item">
-//                         <Link className="nav-link" to={"/Register"}>Register</Link>
-//                     </li>
-//                     </ul>
-//                 </div>
-//                 </div>
-//             </nav>
-
-//         );
-//     }
-// }

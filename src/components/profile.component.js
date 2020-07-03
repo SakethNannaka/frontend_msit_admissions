@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from "./navbar1.component";
 import "./profile.css"
 
-import { Button,Spinner } from 'react-bootstrap';
+import { Button,Spinner, Alert } from 'react-bootstrap';
 import {
   DatePicker,
   MuiPickersUtilsProvider,
@@ -75,7 +75,7 @@ function Session(props){
                       </li>
                       <li>
                           <a href onClick={props.this.handleEditProfile}>
-                          <span className="fa fa-cog"></span> Edit
+                          <span className="fa fa-cog"></span> Edit Profile
                           </a>
                       </li>
                     </ul>
@@ -88,11 +88,8 @@ function Session(props){
 
                   </h2>
 
-            <br></br>        
-<br></br>        
-<br></br>        
-<br></br>        
-<br></br>        
+            <br></br>    
+      
             <div class="container2">
   <div class="row">
 
@@ -274,7 +271,6 @@ class Profile extends Component {
     this.handleEditProfile =this.handleEditProfile.bind(this);
     this.handleProfile =this.handleProfile.bind(this);
 
-
   }
   // onChange = e => console.log("hai")
 
@@ -283,15 +279,42 @@ class Profile extends Component {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.state);
   };
+
+
   onChangeNumber = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-    if(e.target.value.length>10) {
-      e.target.value=e.target.value.slice(0,10)
+    if (e.target.name === "mobile_no" || e.target.name === "landline_no") {
+      document.getElementById("alerts1").innerHTML = "Mobile number should be 10 digits"
+      if(e.target.value.length >= 10) {
+        document.getElementById("alerts1").innerHTML = ""
+        e.target.value=e.target.value.slice(0,10)
+      }
     }
+    
+    if (e.target.name === "pincode") {
+      document.getElementById("alerts2").innerHTML = "pincode should be 6 digits"
+      if(e.target.value.length > 6) {
+        document.getElementById("alerts2").innerHTML = ""
+        e.target.value=e.target.value.slice(0, 6)
+      }
+    }
+    this.setState({ [e.target.name]: e.target.value });
     console.log(this.state);
   }
   onSubmit = (e) => {
     e.preventDefault();
+
+    if (this.state.mobile_no.length < 10 || this.state.landline_no.length < 10) {
+        // alert("Mobile number should be atleast 10 digits")
+        // document.getElementById("alerts1").innerHTML = "Mobile number should be atleast 10 digits"
+        document.getElementById("alerts1").innerHTML = "Mobile number should be 10 digits"
+        return
+    }
+
+    if (this.state.pincode.length < 6) {
+      // alert("pincode should be atleast 6 digits")
+      document.getElementById("alerts2").innerHTML = "pincode should be 6 digits"
+      return
+    }
     // this.setState({photo_status:true,educationdetails_status:true,status:true})
     this.setState({"email":localStorage.getItem("email")});
     console.log(this.state.email)
@@ -372,6 +395,16 @@ onUploadFile(e) {
     console.log("handle upload");
     console.log(this.state.profile_pic_upload);
 
+        if (this.state.profile_pic_upload.type !== "image/jpeg" ) {
+          // return alert("JPEG or JPG images only")
+          return document.getElementById("alerts3").innerHTML = "JPEG or JPG images only"
+      } else if (this.state.profile_pic_upload.size > 2000000) {
+        // return alert("2mb")
+        return document.getElementById("alerts3").innerHTML = "Image size should be lessthan 2mb"
+      } else {
+      document.getElementById("alerts3").innerHTML = ""
+
+
     const formdata = new FormData()
 
             formdata.append('file',this.state.profile_pic_upload, (this.state.email + '.jpeg'))
@@ -391,7 +424,7 @@ onUploadFile(e) {
                   .catch(err => console.log(err))
 
   console.log("**********************")    
-  
+                }
 }
 
 
@@ -478,7 +511,6 @@ componentDidMount(){
     return (
       <div>
         <Navbar/>
-        <br></br>
         <br></br>
         <br></br>
         <Session
