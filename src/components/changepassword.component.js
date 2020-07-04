@@ -80,8 +80,12 @@ export default class ChangePassword extends Component {
     render() {
         return (
             <div>
-                
             <Navbar />
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <reac.Container>
               <div className = "ml-auto">
                         <a href="https://msitprogram.net/">
