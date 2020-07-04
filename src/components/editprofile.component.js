@@ -71,7 +71,6 @@ class Edit extends Component {
   render() { 
     const userDetails=JSON.parse(localStorage.getItem("state"));
     const image_url   ="https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg" ;
-    console.log("stat" + typeof(this.props.stat))
     return ( 
       <div>
       <div>
