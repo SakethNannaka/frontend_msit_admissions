@@ -226,7 +226,7 @@ export default class GatApplication extends Component {
    */
   render() {
     const userDetails = JSON.parse(localStorage.getItem("state"));
-    
+    const image_url   ="https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg" ;
     return (
       <div>
         <Navbar />
@@ -244,7 +244,7 @@ export default class GatApplication extends Component {
 
              <img id="pp"                     
                      className="img-profile img-circle img-responsive center-block"
-                     src={userDetails.image_url} 
+                     src={image_url} 
                      alt=""
                      onError={(e)=>{e.target.onerror = null; e.target.src="https://paradisevalleychristian.org/wp-content/uploads/2017/01/Blank-Profile.png"}} 
                      />

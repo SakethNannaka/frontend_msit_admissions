@@ -70,6 +70,7 @@ class Edit extends Component {
     
   render() { 
     const userDetails=JSON.parse(localStorage.getItem("state"));
+    const image_url   ="https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg" ;
     console.log("stat" + typeof(this.props.stat))
     return ( 
       <div>
@@ -84,7 +85,7 @@ class Edit extends Component {
                 <div className="user-info">
                 <img id="pp"                     
                      className="img-profile img-circle img-responsive center-block"
-                     src={userDetails.image_url} 
+                     src={image_url} 
                      alt=""
                      onError={(e)=>{e.target.onerror = null; e.target.src="https://paradisevalleychristian.org/wp-content/uploads/2017/01/Blank-Profile.png"}} 
                      />
