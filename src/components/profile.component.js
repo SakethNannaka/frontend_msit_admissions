@@ -31,9 +31,6 @@ function Session(props){
       
     return (
       <div>
-
-        
-
         <div className="container" width="1200px">
           <div className="view-account">
             <section className="module">
@@ -515,6 +512,7 @@ componentDidMount(){
     console.log(this.state.status)
     return (
       <div>
+      <br></br>
         <Navbar/>
         <br></br>
         <br></br>
