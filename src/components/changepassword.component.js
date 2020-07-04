@@ -83,10 +83,9 @@ export default class ChangePassword extends Component {
                 
             <Navbar />
             <reac.Container>
-            <reac.Row>
               <div className = "ml-auto">
                         <a href="https://msitprogram.net/">
-                          <img src={logo} alt = "msitlogo" height = "50px"/>
+                          <img src={logo} alt = "msitlogo" height = {50}/>
                         </a>
                 </div>
                 <br></br>
@@ -110,7 +109,6 @@ export default class ChangePassword extends Component {
                     Submit
                 </reac.Button>
             </reac.Form>
-            </reac.Row>
         </reac.Container>
         </div>
         );
