@@ -12,6 +12,60 @@ import DateFnsUtils from "@date-io/date-fns"; // import
 import { CountryDropdown} from 'react-country-region-selector';
 import { Link } from 'react-router-dom'
 
+
+function imageExists(url, callback) {
+  var img = new Image();
+  img.onload = function() { callback(true); };
+  img.onerror = function() { callback(false); };
+  img.src = url;
+}
+
+const IsNone = (props) => {
+  if (props.stat) {
+    console.log("ttttttttttttttttttttttttttttttttttttttt")
+    return (<nav className="side-menu">
+    <ul className="nav">
+
+      <li>
+          <a href onClick={props.stat1.handleProfile}>
+          <span className="fa fa-user"></span> Profile
+          </a>
+      </li>
+
+      <li>
+      <Link className="nav-link" to={"/gat"}>
+          <span className="fa fa-th"></span> GAT
+          </Link>
+      </li>
+      <li>
+      <Link className="nav-link" to={"/gat"}>
+          <span className="fa fa-clock-o"></span> Walkin                      
+          </Link>
+      </li>
+
+      <li className="active">
+      <a href onClick={props.stat1.handleEditProfile}>
+          <span className="fa fa-cog"></span> Edit Profile
+          </a>
+      </li>
+    </ul>
+  </nav>);
+  } else {
+    console.log("fffffffffffffffffffffff")
+    return (
+      <nav className="side-menu">
+                    <ul className="nav" >
+                      <li className = "active">
+                      <a href onClick={props.stat1.handleEditProfile}>
+                          <span className="fa fa-cog"></span> Edit Profile
+                          </a>
+                      </li>
+                    </ul>
+                  </nav>
+    )
+  }
+}
+
 class Edit extends Component {
   constructor(props){
     super(props)
@@ -19,8 +73,16 @@ class Edit extends Component {
     this.state = { full_name:"" }
   }
 
+    
   render() { 
     const userDetails=JSON.parse(localStorage.getItem("state"));
+    console.log("stat" + typeof(this.props.stat))
+    var imageUrl = userDetails.image_url;
+    imageExists(imageUrl, function(exists) {
+        if (!exists) {
+          userDetails.image_url = "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/" + "null.jpeg"
+        }
+    });
     return ( 
       <div>
       <div>
@@ -50,33 +112,9 @@ class Edit extends Component {
 
                   </ul>
                   </div>
-                  <nav className="side-menu">
-                    <ul className="nav">
 
-                      <li>
-                          <a href onClick={this.props.prop.handleProfile}>
-                          <span className="fa fa-user"></span> Profile
-                          </a>
-                      </li>
-
-                      <li>
-                      <Link className="nav-link" to={"/gat"}>
-                          <span className="fa fa-th"></span> GAT
-                          </Link>
-                      </li>
-                      <li>
-                      <Link className="nav-link" to={"/gat"}>
-                          <span className="fa fa-clock-o"></span> Walkin                      
-                          </Link>
-                      </li>
-
-                      <li className="active">
-                      <a href onClick={this.props.prop.handleEditProfile}>
-                          <span className="fa fa-cog"></span> Edit Profile
-                          </a>
-                      </li>
-                    </ul>
-                  </nav>
+                  <IsNone stat = {this.props.stat} stat1 = {this.props.prop} />
+                  
                 </div>
                 <div className="content-panel">
                   <h2 className="title">
@@ -113,7 +151,6 @@ class Edit extends Component {
                             className="file-uploader pull-left"
                             name="profile_pic_upload"
                             onChange={this.props.prop.onUploadFile}
-                            required
                           ></input>
   
                           &nbsp;

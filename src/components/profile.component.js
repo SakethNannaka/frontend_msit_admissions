@@ -16,6 +16,15 @@ import { Link } from 'react-router-dom'
 import Edit from "./editprofile.component"
 
 
+// The "callback" argument is called with either true or false
+// depending on whether the image at "url" exists or not.
+function imageExists(url, callback) {
+      var img = new Image();
+      img.onload = function() { callback(true); };
+      img.onerror = function() { callback(false); };
+      img.src = url;
+}
+
 
 function Session(props){
   console.log("status",props.this.status)
@@ -24,10 +33,15 @@ function Session(props){
 
     console.log("User profile")
     const userDetails = props.this.state;
+     var url = "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg?random="+new Date().getTime()
+    
+    
+    // Sample usage
+      
     return (
       <div>
 
-           
+        
 
         <div className="container" width="1200px">
           <div className="view-account">
@@ -40,7 +54,7 @@ function Session(props){
                     <img
                       className="img-profile img-circle img-responsive center-block"
                       id = "pp"
-                      src={userDetails.image_url}
+                      src={url}
                       alt=""
                     ></img>
                     <ul className="meta list list-unstyled">
@@ -190,12 +204,12 @@ function Session(props){
 
     console.log("No user profile")
     return (
-  <Edit prop={props.this}/>
+  <Edit prop={props.this} stat = {false}/>
     );
   }
   else if(props.status==="Edit"){
     return(
-      <Edit prop={props.this}/>
+      <Edit prop={props.this} stat = {true}/>
     );
   }
   else{

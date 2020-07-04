@@ -52,7 +52,7 @@ export default class SignUp extends Component {
   };
 
   updateContact = (event) => {
-    this.setState({ contact: event.target.value });
+    this.setState({ contact: event.target.value.slice(0,10) });
     document.getElementById("alerts").innerHTML = "";
   };
 

@@ -12,7 +12,7 @@ export default class Navbar extends Component {
                 <img
                   alt=""
                   src={logo}
-                  height={40}
+                  height={30}
                   className="d-inline-block align-top"
                 />{' '}
             </reac.Navbar.Brand>

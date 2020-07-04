@@ -8,6 +8,14 @@ import Table from "react-bootstrap/Table";
 import "./GatApplication.css";
 import "./profile.css";
 
+function imageExists(url, callback) {
+  var img = new Image();
+  img.onload = function() { callback(true); };
+  img.onerror = function() { callback(false); };
+  img.src = url;
+}
+
+
 export default class WalkinApplication extends Component {
   constructor() {
     super();
@@ -103,8 +111,16 @@ export default class WalkinApplication extends Component {
         console.log("errors");
       });
   };
+  
   render() {
     const userDetails = JSON.parse(localStorage.getItem("state"));
+    var imageUrl = userDetails.image_url;
+    imageExists(imageUrl, function(exists) {
+        if (!exists) {
+          userDetails.image_url = "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/" + "null.jpeg"
+        }
+    });
+    console.log("walkin", userDetails.image_url)
     return (
       <div>
         <Navbar />
