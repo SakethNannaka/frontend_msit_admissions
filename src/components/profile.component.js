@@ -28,12 +28,6 @@ function Session(props){
     
     
     // Sample usage
-    var imageUrl = url;
-    imageExists(imageUrl, function(exists) {
-        if (!exists) {
-          url = "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/" + "null.jpeg"
-        }
-    });
       
     return (
       <div>
