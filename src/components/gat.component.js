@@ -11,13 +11,6 @@ import Navbar from "./navbar1.component";
 import "./profile.css";
 
 
-function imageExists(url, callback) {
-  var img = new Image();
-  img.onload = function() { callback(true); };
-  img.onerror = function() { callback(false); };
-  img.src = url;
-}
-
 /**
  * This class is to apply,display,edit GAT application.When user clicks
  * on GAT in dashboard,first it calls API by ComponentDidMount method and feteches whether user
@@ -233,12 +226,6 @@ export default class GatApplication extends Component {
    */
   render() {
     const userDetails = JSON.parse(localStorage.getItem("state"));
-    var imageUrl = userDetails.image_url;
-    imageExists(imageUrl, function(exists) {
-        if (!exists) {
-          userDetails.image_url = "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/" + "null.jpeg"
-        }
-    });
     
     return (
       <div>

@@ -13,12 +13,6 @@ import { CountryDropdown} from 'react-country-region-selector';
 import { Link } from 'react-router-dom'
 
 
-function imageExists(url, callback) {
-  var img = new Image();
-  img.onload = function() { callback(true); };
-  img.onerror = function() { callback(false); };
-  img.src = url;
-}
 
 const IsNone = (props) => {
   if (props.stat) {
@@ -77,12 +71,6 @@ class Edit extends Component {
   render() { 
     const userDetails=JSON.parse(localStorage.getItem("state"));
     console.log("stat" + typeof(this.props.stat))
-    var imageUrl = userDetails.image_url;
-    imageExists(imageUrl, function(exists) {
-        if (!exists) {
-          userDetails.image_url = "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/" + "null.jpeg"
-        }
-    });
     return ( 
       <div>
       <div>
