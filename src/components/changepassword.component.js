@@ -81,22 +81,20 @@ export default class ChangePassword extends Component {
         return (
             <div>
             <Navbar />
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <reac.Container>
+                <reac.Row style = {{justifyContent: "center", justifyItems: "center",  margin: "100px",  padding: "20px"}}>
+
               <div className = "ml-auto">
                         <a href="https://msitprogram.net/">
                           <img src={logo} alt = "msitlogo" height = {50}/>
                         </a>
                 </div>
                 <br></br>
-                <reac.Form onSubmit = {this.onSubmit} className = "login-form">
-                <h3>ChangePassword</h3>
+                <hr></hr>
+                <h3 align="center">ChangePassword</h3>
                 <br></br>
-
+                <reac.Form onSubmit = {this.onSubmit} className = "login-form">
+               
                 <reac.Form.Group controlId="formBasicPassword">
                     <reac.Form.Label>Password</reac.Form.Label>
                     <reac.Form.Control type="password" placeholder="Password" name = "password" autoComplete="password" onChange = {this.onChangePassword} required/>
@@ -113,6 +111,7 @@ export default class ChangePassword extends Component {
                     Submit
                 </reac.Button>
             </reac.Form>
+            </reac.Row>
         </reac.Container>
         </div>
         );
