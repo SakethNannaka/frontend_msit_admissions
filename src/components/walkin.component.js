@@ -107,7 +107,7 @@ export default class WalkinApplication extends Component {
   
   render() {
     const userDetails = JSON.parse(localStorage.getItem("state"));
-    
+    const image_url   ="https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg" ;
     console.log("walkin", userDetails.image_url)
     return (
       <div>
@@ -127,7 +127,7 @@ export default class WalkinApplication extends Component {
                 <img
                   className="img-profile img-circle img-responsive center-block"
                   id = "pp"
-                  src={userDetails.image_url}
+                  src={image_url}
                   alt=""
                 ></img>
                 <ul className="meta list list-unstyled">
