@@ -31,9 +31,6 @@ function Session(props){
       
     return (
       <div>
-
-        
-
         <div className="container" width="1200px">
           <div className="view-account">
             <section className="module">
@@ -42,12 +39,12 @@ function Session(props){
   
                   <div className="user-info">
   
-                    <img
-                      className="img-profile img-circle img-responsive center-block"
-                      id = "pp"
-                      src={url}
-                      alt=""
-                    ></img>
+                  <img id="pp"                     
+                     className="img-profile img-circle img-responsive center-block"
+                     src={url} 
+                     alt=""
+                     onError={(e)=>{e.target.onerror = null; e.target.src="https://paradisevalleychristian.org/wp-content/uploads/2017/01/Blank-Profile.png"}} 
+                     />
                     <ul className="meta list list-unstyled">
                       <li className="name">
                         <h4>{userDetails.full_name}</h4>
@@ -515,6 +512,7 @@ componentDidMount(){
     console.log(this.state.status)
     return (
       <div>
+      <br></br>
         <Navbar/>
         <br></br>
         <br></br>

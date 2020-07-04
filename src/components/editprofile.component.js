@@ -82,13 +82,12 @@ class Edit extends Component {
                 <div className="side-bar">
   
                 <div className="user-info">
-
-                  <img
-                    className="img-profile img-circle img-responsive center-block"
-                    id = "pp"
-                    src={userDetails.image_url}
-                    alt=""
-                  ></img>
+                <img id="pp"                     
+                     className="img-profile img-circle img-responsive center-block"
+                     src={userDetails.image_url} 
+                     alt=""
+                     onError={(e)=>{e.target.onerror = null; e.target.src="https://paradisevalleychristian.org/wp-content/uploads/2017/01/Blank-Profile.png"}} 
+                     />
                   <ul className="meta list list-unstyled">
                     <li className="name">
                       <h4>{userDetails.full_name}</h4>
