@@ -11,7 +11,9 @@ import Logout from "../components/logout.component"
 import Gat from "../components/gat.component"
 import Walkin from "../components/walkin.component"
 import Edit from "../components/editprofile.component";
+import Contact from "../components/contact.component"
 import AuthApi from "../utils/AuthApi"
+import Process from "../components/process.component"
 
 export default function Routes() {
     return (
@@ -21,9 +23,10 @@ export default function Routes() {
                 <div className="auth-wrapper">
                     <div className="auth-inner">
                     <Switch>
-                        <RouteRegisteration exact path='/' component={Login} />
+                        <RouteRegisteration exact path='/process' component={Process} />
+                        <RouteRegisteration exact path='/' component={Process} />
                         <RouteRegisteration path="/Login" component={Login} />
-                        <Route path="/Register" component={Register} />
+                        <RouteRegisteration path="/Register" component={Register} />
                         <RouteProtected path="/profile" component={Profile} />
                         <RouteRegisteration path = "/forgotpassword" component = {FgtPassword} />
                         <RouteProtected path="/gat" component={Gat} />
@@ -31,6 +34,7 @@ export default function Routes() {
                         <RouteProtected path= "/changepassword" component = {ChangePassword} />
                         <RouteProtected path= "/logout" component = {Logout} />
                         <RouteProtected path="/edit" component={Edit} />
+                        <RouteProtected path = "/contactus" component = {Contact} />
                     </Switch>
                     </div>
                 </div>

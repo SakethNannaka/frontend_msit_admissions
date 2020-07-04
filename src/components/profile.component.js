@@ -24,7 +24,7 @@ function Session(props){
 
     console.log("User profile")
     const userDetails = props.this.state;
-     var url = "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg?random="+new Date().getTime()
+     const url = "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg?random="+new Date().getTime()
     
     
     // Sample usage
