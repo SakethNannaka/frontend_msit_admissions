@@ -11,7 +11,7 @@ export default class Process extends Component {
 
         return(
           
-              <Container style={{marginTop:'100px', padding:'100px'}}>
+              <Container style={{marginTop:'100px', padding:'75px'}}>
               <Row xs={"auto"} md={"auto"} lg={"auto"} sm={"auto"} style={{justifyContent:'center', alignItems:'center'}}>
               <div style={{display:'flex', flexDirection:'column'}}>
                 <div>

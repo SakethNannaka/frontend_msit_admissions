@@ -49,8 +49,8 @@ export default function Login() {
 
 
     return (
-      <reac.Container>
-        <reac.Row style = {{justifyContent: "center", justifyItems: "center",  margin: "100px",  padding: "20px"}}>
+      <reac.Container style={{fontSize:"small"}}>
+            <reac.Row style = {{justifyContent: "center", justifyItems: "center", margin: "100px",  padding: "20px"}}>
           {/* <reac.Col></reac.Col> */}
           {/* <reac.Col style={{ margin: "100px", padding: "40px 55px 45px 55px" }}> */}
             <div>
@@ -61,7 +61,7 @@ export default function Login() {
               </div>
               <br></br>
               <hr></hr>
-              <h4 align="center">Login</h4>
+              <h3 align="center">Login</h3>
               <br></br>
               <p style={{ color: "red" }} id="alerts"></p>
               <reac.Form onSubmit={loginSubmit} className="content">

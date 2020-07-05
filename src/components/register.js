@@ -155,21 +155,22 @@ export default class SignUp extends Component {
   };
   render() {
     return (
-      <reac.Container>
+      <reac.Container style={{fontSize:"small"}}>
             <reac.Row style = {{justifyContent: "center", justifyItems: "center", margin: "100px",  padding: "20px"}}>
               {/* <reac.Col></reac.Col>
               <reac.Col style = {{margin: "100px", padding: "40px 55px 45px 55px"}}> */}
               <div>
-                    <div>
-                        <a href="https://msitprogram.net/">
-                          <img src={logo} alt="msitlogo" height="50px" />
-                        </a>
-                    </div>
+              <div>
+                <a href="https://msitprogram.net/">
+                  <img src={logo} alt="msitlogo" height="50px" />
+                </a>
+              </div>
                     <br></br>
                     <hr></hr>
                     <reac.Form onSubmit = {this.registerSubmit}>
-                      <br></br>
                       <h3 align = "center">Register</h3>
+                    <br></br>
+
                       <p style = {{color : "red"}} id = "alerts"></p>
                       <reac.Form.Group className="formBasicUsername">
                       <reac.Form.Label>User Name</reac.Form.Label>
