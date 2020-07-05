@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from "./navbar1.component";
 import "./profile.css"
 
-import { Button,Spinner, Alert } from 'react-bootstrap';
+import { Button,Spinner,Table } from 'react-bootstrap';
 import {
   DatePicker,
   MuiPickersUtilsProvider,
@@ -75,11 +75,6 @@ function Session(props){
                           <span className="fa fa-clock-o"></span> Walkin                      
                           </Link>
                       </li>
-                      <li>
-                          <a href onClick={props.this.handleEditProfile}>
-                          <span className="fa fa-cog"></span> Edit Profile
-                          </a>
-                      </li>
                     </ul>
                   </nav>
                 </div>
@@ -91,90 +86,54 @@ function Session(props){
                   </h2>
 
             <br></br>    
-      
-            <div class="container2">
-  <div class="row">
 
-       <div class="col-md-7 ">
+<Table responsive style={{fontSize:"small",fontFamily:"Roboto",}}>
+<thead><h2>User Profile</h2></thead>
+<br></br>
+&nbsp;&nbsp;&nbsp;
+<Button variant="info" onClick={props.this.handleEditProfile}>Edit Profile</Button>{' '}<br></br>
+<br></br>
+<br></br>
+  <tbody>
+    <tr>
+      <td>Full Name</td>
+      <td>{userDetails.full_name}</td>
+    </tr>
+    <tr>
+      <td>Parent Name</td>
+      <td>{userDetails.parent_name}</td>
+    </tr>
+    <tr>
+      <td>Nationality</td>
+      <td>{userDetails.nationality}</td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td>{userDetails.gender}</td>
+    </tr>
+    <tr>
+      <td>Date of Birth</td>
+      <td>{userDetails.date_of_birth}</td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>{userDetails.address_line1+" , "+userDetails.address_line2+" , "+userDetails.place_town+" , "+userDetails.city+" , "+userDetails.pincode}</td>
+    </tr>
+    <tr>
+      <td>Phone</td>
+      <td>{userDetails.mobile_no+" , "+userDetails.landline_no}</td>
+    </tr>
+    <tr>
+      <td>Board Details</td>
+      <td>{userDetails.board_name+" , "+userDetails.board_number}</td>
+    </tr>
+    <tr>
+      <td>Btech</td>
+      <td>Passed in Year {userDetails.btech}</td>
+    </tr>
 
-<div class="panel panel-default">
-  <div class="panel-heading">  <h4 >User Profile</h4></div>
-   <div class="panel-body">
-       
-    <div class="box box-info">
-        
-            <div class="box-body">
-                     <div class="col-sm-6">
-              <br></br>
-    
-            </div>
-            <div class="col-sm-6">
-              <span><p>Aspirant</p></span>            
-            </div>
-            <div class="clearfix"></div>
-    
-              
-<div class="col-sm-5 col-xs-6 tital " >Full Name:</div><div class="col-sm-7 col-xs-6 ">{userDetails.full_name}</div>
-     <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Parent Name:</div><div class="col-sm-7">{userDetails.parent_name}</div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Date Of Birth:</div><div class="col-sm-7"> {userDetails.date_of_birth}</div>
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Gender</div><div class="col-sm-7">{userDetails.gender}</div>
-
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Mobile Number:</div><div class="col-sm-7">{userDetails.mobile_no}</div>
-
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >City:</div><div class="col-sm-7">{userDetails.city}</div>
-
- <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Nationality:</div><div class="col-sm-7">{userDetails.nationality}</div>
-
- <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Pincode:</div><div class="col-sm-7">{userDetails.pincode}</div>
-
-<div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7">{userDetails.address_line1}</div>
-
-
-
-
-          </div>
-
-        </div>
-       
-            
-    </div> 
-    </div>
-</div>  
-
-       
-       
-       
-       
-       
-       
-       
-   </div>
-</div>
-
+  </tbody>
+</Table>
                   </div>
 
               </div>

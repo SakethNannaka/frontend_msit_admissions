@@ -37,11 +37,7 @@ const IsNone = (props) => {
           </Link>
       </li>
 
-      <li className="active">
-      <a href onClick={props.stat1.handleEditProfile}>
-          <span className="fa fa-cog"></span> Edit Profile
-          </a>
-      </li>
+
     </ul>
   </nav>);
   } else {
@@ -50,8 +46,8 @@ const IsNone = (props) => {
       <nav className="side-menu">
                     <ul className="nav" >
                       <li className = "active">
-                      <a href onClick={props.stat1.handleEditProfile}>
-                          <span className="fa fa-cog"></span> Edit Profile
+                      <a href>
+                          <span className="fa fa-cog"></span> Fill Profile
                           </a>
                       </li>
                     </ul>
