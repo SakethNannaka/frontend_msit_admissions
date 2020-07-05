@@ -71,7 +71,7 @@ function Session(props){
                           </Link>
                       </li>
                       <li>
-                      <Link className="nav-link" to={"/gat"}>
+                      <Link className="nav-link" to={"/walkin"}>
                           <span className="fa fa-clock-o"></span> Walkin                      
                           </Link>
                       </li>
@@ -314,8 +314,22 @@ class Profile extends Component {
 
     if (this.state.pincode.length < 6) {
       // alert("pincode should be atleast 6 digits")
-      document.getElementById("alerts2").innerHTML = "pincode should be 6 digits"
+      document.getElementById("alerts2").innerHTML = "Pincode should be 6 digits"
       return
+    }
+
+    if (this.state.board_name === "" || this.state.board_name === "N/A" || this.state.board_name === "Select 10th Board") {
+      document.getElementById("alerts2").innerHTML = "Select Board Name"
+      return;
+    } else {
+      document.getElementById("alerts2").innerHTML= ""
+    }
+    
+    if (this.state.btech === "" || this.state.btech === "N/A" || this.state.btech === "Select Btech Status") {
+      document.getElementById("alerts2").innerHTML = "Select Btech"
+      return;
+    } else {
+      document.getElementById("alerts2").innerHTML= ""
     }
     // this.setState({photo_status:true,educationdetails_status:true,status:true})
     this.setState({"email":localStorage.getItem("email")});
@@ -349,8 +363,12 @@ changeBoard = (e) => {
   console.log("**********************")
   console.log("Change Board Clicked")
   this.setState({  
-    board_name: e.target.value  
+    board_name: e.target.value
   })  ;
+
+  if (this.state.board_name > 2) {
+    document.getElementById("alerts2").innerHTML = ""
+  }
   console.log(e.target.value)
   console.log(this.state)
   console.log("**********************")
@@ -359,9 +377,11 @@ changeBoard = (e) => {
 changeBtech = (e) => {  
   console.log("**********************")
   console.log("Change Btech Clicked")
+  
   this.setState({  
           btech: e.target.value  
   })  ;
+  
   console.log(e.target.value)
   console.log(this.state)
   console.log("**********************")

@@ -21,9 +21,9 @@ export default class Navbar extends Component {
               <reac.Nav className="mr-auto">
               </reac.Nav>
               <reac.Nav style = {{}}>
-              <reac.NavItem><Link className="nav-link" to={"/login"}>Signin</Link></reac.NavItem>
-              <reac.NavItem><Link className="nav-link" to={"/register"}>Signup</Link></reac.NavItem>
-              <reac.NavItem><Link className="nav-link" to={"/process"}>Apply process</Link></reac.NavItem>
+              <reac.NavItem><Link className="nav-link" to={"/login"}>Login</Link></reac.NavItem>
+              <reac.NavItem><Link className="nav-link" to={"/register"}>Register</Link></reac.NavItem>
+              <reac.NavItem><Link className="nav-link" to={"/process"}>Home</Link></reac.NavItem>
                 {/* <reac.Nav.Link href="/login">SIGNIN</reac.Nav.Link>
                 <reac.Nav.Link href="/register">SIGNUP</reac.Nav.Link> */}
               </reac.Nav>

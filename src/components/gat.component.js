@@ -192,7 +192,19 @@ export default class GatApplication extends Component {
       analytical: analytical,
       quantVerbal: quantVerbal,
     };
-
+    if (this.state.quantVerbalError) {
+      return;
+    }
+    if (this.state.analyticalError) {
+      return;
+    }
+    if (this.state.testCenter === "" || this.state.testCenter=== "N/A") {
+      document.getElementById("alerts").innerHTML = "Test center should be selected";
+      this.setState({
+        testCenter: ""
+      })
+      return;
+    }
     axios
       .post("https://flask-deploy-admissions.herokuapp.com/gatDetails", gatDetails)
       .then((result) => {
@@ -292,21 +304,23 @@ export default class GatApplication extends Component {
               <span className="pro-label label label-warning">GAT</span>
             </h2>
         <Application
-          applied={this.state.applied}
-          examOpt={this.state.examOpt}
-          applicationNo={this.state.applicationNo}
-          quantVerbal={this.state.quantVerbal}
-          analytical={this.state.analytical}
-          quantVerbalError={this.state.quantVerbalError}
-          analyticalError={this.state.analyticalError}
-          isValidDate={this.state.isValidDate}
-          buttonDisabled={this.state.buttonDisabled}
-          onChange={this.onChange}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          handleDropdownChange={this.handleDropdownChange}
+        this = {this}
+          // applied={this.state.applied}
+          // examOpt={this.state.examOpt}
+          // applicationNo={this.state.applicationNo}
+          // quantVerbal={this.state.quantVerbal}
+          // analytical={this.state.analytical}
+          // quantVerbalError={this.state.quantVerbalError}
+          // analyticalError={this.state.analyticalError}
+          // isValidDate={this.state.isValidDate}
+          // buttonDisabled={this.state.buttonDisabled}
+          // onChange={this.onChange}
+          // handleChange={this.handleChange}
+          // handleSubmit={this.handleSubmit}
+          // handleDropdownChange={this.handleDropdownChange}
         />
-        <AppliedApp
+        {/* <AppliedApp
+        this = {this}
           applied={this.state.applied}
           applicationNo={this.state.applicationNo}
           quantVerbal={this.state.quantVerbal}
@@ -315,7 +329,7 @@ export default class GatApplication extends Component {
           paymentStatus={this.state.paymentStatus}
           appType={this.state.appType}
           editApplication={this.editApplication}
-        />
+        /> */}
              </div>
         </div>
       </section>
@@ -327,11 +341,11 @@ export default class GatApplication extends Component {
   }
 }
 const Application = (props) => {
-  console.log("gat", props.isValidDate);
-  if (props.isValidDate & (props.applied == null)) {
+  console.log("gat", props.this.state.isValidDate);
+  if (props.this.state.isValidDate & (props.this.state.applied == null)) {
     console.log("null");
     return <div></div>;
-  } else if (props.isValidDate && !props.applied) {
+  } else if (props.this.state.isValidDate && !props.this.state.applied) {
     return (        
 
           <reac.Container className="main-content">
@@ -354,7 +368,9 @@ const Application = (props) => {
           </reac.Col>
         </reac.Row>
         <br></br>
-        <h5>Please select your choice!!</h5>
+        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;Please select your choice!!</h5>
         <reac.Row>
           <reac.Col></reac.Col>
           <reac.Col>
@@ -363,21 +379,21 @@ const Application = (props) => {
                 <input
                   type="radio"
                   value="GAT"
-                  checked={props.examOpt === "GAT"}
+                  checked={props.this.state.examOpt === "GAT"}
                   name="exam"
-                  onChange={props.onChange}
+                  onChange={props.this.onChange}
                 />
                 GAT
               </label>
               <br></br>
-
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <label className="radio">
                 <input
                   type="radio"
                   value="GRE"
-                  checked={props.examOpt === "GRE"}
+                  checked={props.this.state.examOpt === "GRE"}
                   name="exam"
-                  onChange={props.onChange}
+                  onChange={props.this.onChange}
                 />
                 GRE
               </label>
@@ -390,20 +406,22 @@ const Application = (props) => {
           <reac.Col></reac.Col>
           <reac.Col>
             <ApplyGAT
-              examOpt={props.examOpt}
-              applicationNo={props.applicationNo}
-              handleDropdownChange={props.handleDropdownChange}
-              handleSubmit={props.handleSubmit}
+            this = {props.this}
+              // examOpt={props.examOpt}
+              // applicationNo={props.applicationNo}
+              // handleDropdownChange={props.handleDropdownChange}
+              // handleSubmit={props.handleSubmit}
             />
             <ApplyGRE
-              applicationNo={props.applicationNo}
-              examOpt={props.examOpt}
-              quantVerbal={props.quantVerbal}
-              quantVerbalError={props.quantVerbalError}
-              analytical={props.analytical}
-              analyticalError={props.analyticalError}
-              handleChange={props.handleChange}
-              handleSubmit={props.handleSubmit}
+            this = {props.this}
+              // applicationNo={props.applicationNo}
+              // examOpt={props.examOpt}
+              // quantVerbal={props.quantVerbal}
+              // quantVerbalError={props.quantVerbalError}
+              // analytical={props.analytical}
+              // analyticalError={props.analyticalError}
+              // handleChange={props.handleChange}
+              // handleSubmit={props.handleSubmit}
             />
           </reac.Col>
           <reac.Col></reac.Col>
@@ -411,9 +429,10 @@ const Application = (props) => {
       </reac.Container>
      
     );
-  } else if (props.isValidDate && props.applied) {
+  } else if (props.this.state.isValidDate && props.this.state.applied) {
     return (
-      <div className="main-content">Dear Applicant you applied for GAT</div>
+      // <div className="main-content">Dear Applicant you applied for GAT</div>
+      <AppliedApp this = {props.this}/>
     );
   } else {
     console.log("else");
@@ -433,11 +452,11 @@ const options = [
   { value: "Home", label: "Home" },
 ];
 const ApplyGAT = (props) => {
-  if (props.examOpt === "GAT") {
+  if (props.this.state.examOpt === "GAT") {
     return (
-      <reac.Form onSubmit={props.handleSubmit}>
+      <reac.Form onSubmit={props.this.handleSubmit}>
         <br></br>
-        <p style={{ color: "red" }} id="alerts"></p>
+        <p style={{ color: "red", fontSize: '15px' }} id="alerts"></p>
         <reac.Form.Group className="formBasicUsername">
           <reac.Form.Label>Application Number*</reac.Form.Label>
           <reac.Form.Control
@@ -445,7 +464,7 @@ const ApplyGAT = (props) => {
             name="name"
             className="form-control"
             readOnly
-            value={props.applicationNo}
+            value={props.this.state.applicationNo}
           />
         </reac.Form.Group>
         <reac.Form.Group>
@@ -455,7 +474,7 @@ const ApplyGAT = (props) => {
               <div>
                 <Select
                   options={options}
-                  onChange={props.handleDropdownChange}
+                  onChange={props.this.handleDropdownChange}
                 />
               </div>
             </div>
@@ -476,14 +495,14 @@ const ApplyGAT = (props) => {
   }
 };
 const ApplyGRE = (props) => {
-  if (props.examOpt === "GRE") {
+  if (props.this.state.examOpt === "GRE") {
     return (
-      <reac.Form onSubmit={props.handleSubmit}>
+      <reac.Form onSubmit={props.this.handleSubmit}>
         <br></br>
         <p style={{ color: "red" }} id="alerts"></p>
         <reac.Form.Group className="formBasicUsername">
           <reac.Form.Label>Application Number</reac.Form.Label>
-          <reac.Form.Control type="text" readOnly value={props.applicationNo} />
+          <reac.Form.Control type="text" readOnly value={props.this.state.applicationNo} />
         </reac.Form.Group>
         <reac.Form.Group controlId="formBasicEmail">
           <reac.Form.Label>Quant + Verbal</reac.Form.Label>
@@ -494,10 +513,10 @@ const ApplyGRE = (props) => {
             name="quantVerbal"
             placeholder="more than 301"
             required={true}
-            value={props.quantVerbal}
-            onChange={props.handleChange}
+            value={props.this.state.quantVerbal}
+            onChange={props.this.handleChange}
           />
-          {props.quantVerbalError ? (
+          {props.this.state.quantVerbalError ? (
             <span style={{ color: "red", fontSize: 12 }}>
               You should have between 301-340
             </span>
@@ -514,10 +533,10 @@ const ApplyGRE = (props) => {
             name="analytical"
             placeholder="more than 3.5"
             required={true}
-            value={props.analytical}
-            onChange={props.handleChange}
+            value={props.this.state.analytical}
+            onChange={props.this.handleChange}
           />
-          {props.analyticalError ? (
+          {props.this.state.analyticalError ? (
             <span style={{ color: "red", fontSize: 12 }}>
               You should have between 3.5 - 6.0
             </span>
@@ -529,6 +548,7 @@ const ApplyGRE = (props) => {
           <reac.Button variant="primary" type="submit">
             Apply
           </reac.Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <Link to="/profile">
             <reac.Button variant="primary">Cancel</reac.Button>
           </Link>
@@ -541,19 +561,19 @@ const ApplyGRE = (props) => {
 };
 
 const AppliedApp = (props) => {
-  let applicationNo = props.applicationNo;
-  let testCenter = props.testCenter;
-  let paymentStatus = props.paymentStatus;
-  let appType = props.appType;
-  let button = <reac.Button onClick={props.editApplication}></reac.Button>;
-  if (props.applied && props.payment != "paid") {
+  let applicationNo = props.this.state.applicationNo;
+  let testCenter = props.this.state.testCenter;
+  let paymentStatus = props.this.state.paymentStatus;
+  let appType = props.this.state.appType;
+  let button = <reac.Button onClick={props.this.editApplication}></reac.Button>;
+  if (props.this.state.applied && props.this.state.payment != "paid") {
     button = (
-      <reac.Button onClick={props.editApplication}>
+      <reac.Button onClick={props.this.editApplication}>
         CLICK HERE TO EDIT YOUR APPLICATION
       </reac.Button>
     );
   }
-  if (!props.applied) {
+  if (!props.this.state.applied) {
     applicationNo = "";
     testCenter = "";
     paymentStatus = "";
@@ -563,7 +583,7 @@ const AppliedApp = (props) => {
   return (
     <div className="table">
       <h5 style={{ textAlign: "center" }}>Your Gat Application Details</h5>
-      <Table striped bordered hover>
+      <Table striped bordered hover style = {{width: '80%'}}>
         <thead>
           <tr>
             <th>Application Number</th>

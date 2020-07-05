@@ -38,7 +38,7 @@ export default function Navbar() {
               <reac.NavDropdown title="Account" id="collasible-nav-dropdown">
                   <Link to={"/changepassword"}>Change Password</Link>
                   <br></br>
-                  <Link to={"/contactus"}>Contact us</Link>
+                  <Link to={"/contactus"}>Help</Link>
                   <br></br>
                   {/* <reac.NavDropdown.Item><Link to = {"/logout"}>Logout</Link></reac.NavDropdown.Item> */}
                 </reac.NavDropdown>

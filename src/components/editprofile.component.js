@@ -313,10 +313,6 @@ class Edit extends Component {
                           ></input>
                         </div>
                       </div>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <span id = "alerts2" style = {{color: "red", fontSize: "15px"}}></span>
-                      <br></br>
-                      <br></br>
                       <div className="form-group">
                         <label className="col-md-2 col-sm-3 col-xs-12 control-label">
                           Address
@@ -378,8 +374,10 @@ class Edit extends Component {
                           ></input>
                         </div>
                       </div>
-
                     </fieldset>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span id = "alerts2" style = {{color: "red", fontSize: "15px"}}></span>
+                    <br></br>
                     <fieldset className="fieldset">
                       <h3 className="fieldset-title">Educational Info</h3>
                       <div className="form-group">
@@ -387,11 +385,12 @@ class Edit extends Component {
                           Class 10
                         </label>
                         <div className="col-md-10 col-sm-9 col-xs-12">
-                          <select id="board_name" name="board_name" value={this.props.prop.state.board_name} onChange={this.props.prop.changeBoard}>
+                          <select id="board_name" name="board_name" defaultValue={this.props.prop.state.board_name} onChange={this.props.prop.changeBoard}>
                             <option >Select 10th Board</option>
                             <option value="ssc">SSC</option>
                             <option value="cbse">CBSE</option>
                             <option value="icse">ICSE</option>
+                            
                           </select>
                           &nbsp; &nbsp;
                           <input
@@ -419,7 +418,7 @@ class Edit extends Component {
                           <select
                             id="btech2"
                             name="btech"
-                            value={this.props.prop.btech}
+                            defaultValue={this.props.prop.state.btech}
                             onChange={this.props.prop.onChange}
                           >
                             <option>Select Btech Status</option>

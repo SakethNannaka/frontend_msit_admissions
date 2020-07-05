@@ -86,7 +86,13 @@ export default class WalkinApplication extends Component {
       applicationNo: applicationNo,
       testCenter: testCenter,
     };
-
+    if (this.state.testCenter === "" || this.state.testCenter=== "N/A") {
+      document.getElementById("alerts").innerHTML = "Test center should be selected";
+      this.setState({
+        testCenter: ""
+      })
+      return;
+    }
     axios
       .post("https://flask-deploy-admissions.herokuapp.com/walkinDetails", walkinDetails)
       .then((result) => {
@@ -179,22 +185,23 @@ export default class WalkinApplication extends Component {
               <span className="pro-label label label-warning">Walk-in</span>
             </h2>
         <Application
-          applied={this.state.applied}
-          applicationNo={this.state.applicationNo}
-          isValidDate={this.state.isValidDate}
-          accepted={this.state.accepted}
-          acceptSubmit={this.acceptSubmit}
-          handleSubmit={this.handleSubmit}
-          handleDropdownChange={this.handleDropdownChange}
+        this = {this}
+          // applied={this.state.applied}
+          // applicationNo={this.state.applicationNo}
+          // isValidDate={this.state.isValidDate}
+          // accepted={this.state.accepted}
+          // acceptSubmit={this.acceptSubmit}
+          // handleSubmit={this.handleSubmit}
+          // handleDropdownChange={this.handleDropdownChange}
         />
-        <AppliedApp
+        {/* <AppliedApp
           applied={this.state.applied}
           applicationNo={this.state.applicationNo}
           testCenter={this.state.testCenter}
           paymentStatus={this.state.paymentStatus}
           slotDate={this.state.slotDate}
           totalScore={this.state.totalScore}
-        />
+        /> */}
                 </div>
         </div>
       </section>
@@ -206,28 +213,25 @@ export default class WalkinApplication extends Component {
   }
 }
 const Application = (props) => {
-  console.log("gat", props.isValidDate);
-  if (props.isValidDate & (props.applied == null)) {
+  console.log("gat", props.this.state.isValidDate);
+  if (props.this.state.isValidDate & (props.this.state.applied == null)) {
     console.log("null");
     return <div></div>;
-  } else if (props.isValidDate & !props.applied) {
-    console.log("not applied", props.applied);
+  } else if (props.this.state.isValidDate & !props.this.state.applied) {
+    console.log("not applied", props.this.state.applied);
     return (
       <reac.Container className="main-content">
-        <Walkin1 accepted={props.accepted} acceptSubmit={props.acceptSubmit} />
+        <Walkin1 this = {props.this}  />
         <Walkin2
-          applicationNo={props.applicationNo}
-          accepted={props.accepted}
-          handleSubmit={props.handleSubmit}
-          handleDropdownChange={props.handleDropdownChange}
+          this={props.this}
         />
       </reac.Container>
     );
-  } else if (props.isValidDate & props.applied) {
-    console.log("applied", props.applied);
+  } else if (props.this.state.isValidDate & props.this.state.applied) {
+    console.log("applied", props.this.state.applied);
     return (
-      <div className="main-content">
-        Dear Applicant you already applied for walkin
+      <div>
+        <AppliedApp this = {props.this}/>
       </div>
     );
   } else {
@@ -242,7 +246,7 @@ const Application = (props) => {
   }
 };
 const Walkin1 = (props) => {
-  if (props.accepted === false) {
+  if (props.this.state.accepted === false) {
     return (
       <div>
         <reac.Row>
@@ -273,10 +277,11 @@ const Walkin1 = (props) => {
               <reac.Button
                 type="submit"
                 variant="primary"
-                onClick={props.acceptSubmit}
+                onClick={props.this.acceptSubmit}
               >
                 Yes
               </reac.Button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <Link to="/profile">
                 <reac.Button variant="primary">No</reac.Button>
               </Link>
@@ -297,12 +302,12 @@ const options = [
   { value: "Home", label: "Home" },
 ];
 const Walkin2 = (props) => {
-  if (props.accepted === true) {
+  if (props.this.state.accepted === true) {
     return (
       <div>
-        <reac.Form onSubmit={props.handleSubmit}>
+        <reac.Form onSubmit={props.this.handleSubmit}>
           <br></br>
-          <p style={{ color: "red" }} id="alerts"></p>
+          <p style={{ color: "red", fontSize:'15px'}} id="alerts"></p>
           <reac.Form.Group className="formBasicUsername">
             <reac.Form.Label>Application Number*</reac.Form.Label>
             <reac.Form.Control
@@ -310,7 +315,7 @@ const Walkin2 = (props) => {
               name="name"
               className="form-control"
               readOnly
-              value={props.applicationNo}
+              value={props.this.state.applicationNo}
             />
           </reac.Form.Group>
           <reac.Form.Group>
@@ -320,7 +325,7 @@ const Walkin2 = (props) => {
                 <div>
                   <Select
                     options={options}
-                    onChange={props.handleDropdownChange}
+                    onChange={props.this.handleDropdownChange}
                   />
                 </div>
               </div>
@@ -335,49 +340,54 @@ const Walkin2 = (props) => {
             </Link>
           </div>
         </reac.Form>
-      </div>
+        </div>
     );
   } else {
     return <div></div>;
   }
 };
 const AppliedApp = (props) => {
-  let applicationNo = props.applicationNo;
-  let testCenter = props.testCenter;
-  let paymentStatus = props.paymentStatus;
-  let slot = props.slotDate;
-  let totalScore = props.totalScore;
+  let applicationNo = props.this.state.applicationNo;
+  let testCenter = props.this.state.testCenter;
+  let paymentStatus = props.this.state.paymentStatus;
+  let slot = props.this.state.slotDate;
+  let totalScore = props.this.state.totalScore;
 
-  if (!props.applied) {
+  if (!props.this.state.applied) {
     applicationNo = "";
     testCenter = "";
     paymentStatus = "";
     slot = "";
     totalScore = "";
   }
-  return (
-    <div className="table">
-      <h5 style={{ textAlign: "center" }}>Your Walkin Application Details</h5>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Application Number</th>
-            <th>Test Center</th>
-            <th>Payment Details</th>
-            <th>Date {"&"} Slot</th>
-            <th>Total Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{applicationNo}</td>
-            <td>{testCenter}</td>
-            <td>{paymentStatus}</td>
-            <td>{slot}</td>
-            <td>{totalScore}</td>
-          </tr>
-        </tbody>
-      </Table>
-    </div>
-  );
+    return (
+      <div className="table">
+        <br></br>
+        <br></br>
+        <br></br>
+        <h5 style = {{paddingLeft: '350px'}}>Your Walkin Application Details</h5>
+        <br></br>
+        <br></br>
+        <Table striped bordered hover style = {{width: '80%'}}>
+          <thead>
+            <tr>
+              <th style = {{width : '15%'}}>Application Number</th>
+              <th>Test Center</th>
+              <th>Payment Details</th>
+              <th>Date {'&'} Slot</th>
+              <th>Total Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{applicationNo}</td>
+              <td>{testCenter}</td>
+              <td>{paymentStatus}</td>
+              <td>{slot}</td>
+              <td>{totalScore}</td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
+    );
 };
