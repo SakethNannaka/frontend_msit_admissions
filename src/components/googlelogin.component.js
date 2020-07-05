@@ -1,36 +1,40 @@
-import React, { Component } from 'react'
+import React, { useContext, useState} from "react";
 import GoogleLogin from 'react-google-login'
-export class Glogin extends Component {
+import AuthApi from "../utils/AuthApi"
+import { Button } from '@material-ui/core';
+export default function Glogin(){
+  const authApi = useContext(AuthApi);
 
  
-  onSignIn(googleUser) {
+  const responseGoogle = (googleUser) =>{
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    localStorage.setItem('email', profile.getEmail())
+    authApi.setAuth(true);
+    localStorage.setItem('auth', "Logged in");
+    localStorage.setItem('email', profile.getEmail())
   }
-//   signOut() {
-//     var auth2 = gapi.auth2.getAuthInstance();
-//     auth2.signOut().then(function () {
-//       console.log('User signed out.');
-//     });
-//   }
-  render() {
+  
+  const Failed = (response)=>{
+    console.log(response)
+  }
     return (
       <div>
-        <GoogleLogin
-        clientId="506778935497-6alp0neas4141d67gbqdlt3rhoenq5k3.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={this.onSignIn}
-        onFailure={this.onSignIn}
-        cookiePolicy={'single_host_origin'}
-        
-        />
-        <button onClick={this.signOut}>Signout</button>
+<GoogleLogin
+    clientId="968104435960-tlorqb4lffa6um7p6tl5oit88fs06h7i.apps.googleusercontent.com"
+    render={renderProps => (
+      <Button variant="contained" color="primary" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+  Google Login
+</Button>
+    )}
+    buttonText="Login"
+    onSuccess={responseGoogle}
+    onFailure={Failed}
+    cookiePolicy={'single_host_origin'}
+  />,
       </div>
     )
-  }
 }
-
-export default Glogin

@@ -4,6 +4,7 @@ import React, {Component} from "react"
 import msitprocess from "./msitprocess.jpeg"
 import { Container, Row} from 'reactstrap';
 import * as reac from 'react-bootstrap';
+import Glogin from "./googlelogin.component"
 
 export default class Process extends Component {
     render() {
@@ -33,9 +34,15 @@ export default class Process extends Component {
             
               <Link className="nav-link" to={"/register"}><reac.Button variant="primary" style={{backgroundColor:'orange',float:'right'}} block>Click Here to SIGNUP</reac.Button>  </Link>             
 
-
               </Row>
 
+              <h1 align="center">or</h1>
+              <hr></hr>
+              <div align="center">
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+              <Glogin/>
+              </div>
+             
               </Container>
               
         )
