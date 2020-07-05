@@ -308,6 +308,21 @@ const Walkin2 = (props) => {
         <reac.Form onSubmit={props.this.handleSubmit}>
           <br></br>
           <p style={{ color: "red", fontSize:'15px'}} id="alerts"></p>
+          <reac.Col className="note-box">
+            <h5>
+              Note: Dear applicant walk-in entrance test can be taken{" "}
+              <b>only one time</b>, but you can take<b> GAT Regular one time</b>
+              <br></br>
+              **Please Book your slot after you pay the fee.{" "}
+              <strong>
+                (if you pay the fee, link will be visible under Date {"&"} Slot
+                column in the below table){" "}
+              </strong>
+            </h5>
+          </reac.Col>
+          <br></br>
+          <br></br>
+          <br></br>
           <reac.Form.Group className="formBasicUsername">
             <reac.Form.Label>Application Number*</reac.Form.Label>
             <reac.Form.Control
