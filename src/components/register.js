@@ -190,10 +190,10 @@ export default class SignUp extends Component {
             <br></br>
             <hr id="seven" data-symbol="REGISTER"></hr>
 
-            <reac.Form onSubmit={this.registerSubmit}>
+            <reac.Form onSubmit={this.registerSubmit} style={{fontSize:"medium"}}>
               <br></br>
               <p style={{ color: "red" }} id="alerts"></p>
-              <reac.Form.Group className="formBasicUsername">
+              <reac.Form.Group className="formBasicUsername" >
                 <reac.Form.Label>User Name</reac.Form.Label>
                 <reac.Form.Control
                   type="text"

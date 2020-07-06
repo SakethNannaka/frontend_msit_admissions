@@ -69,7 +69,7 @@ export default function Login() {
           <hr id="seven" data-symbol="LOGIN"></hr>
           <br></br>
           <p style={{ color: "red" }} id="alerts"></p>
-          <reac.Form onSubmit={loginSubmit} className="content">
+          <reac.Form onSubmit={loginSubmit} className="content" style={{fontSize:"medium"}}>
             <reac.Form.Group className="form-group">
               <reac.Form.Label>Email address</reac.Form.Label>
               <reac.Form.Control
