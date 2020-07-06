@@ -14,7 +14,7 @@ import Edit from "../components/editprofile.component";
 import Contact from "../components/contact.component"
 import AuthApi from "../utils/AuthApi"
 import Process from "../components/process.component"
-
+import Payments from "../components/payment.component"
 export default function Routes() {
     return (
         <Router>
@@ -35,6 +35,7 @@ export default function Routes() {
                         <RouteProtected path= "/logout" component = {Logout} />
                         <RouteProtected path="/edit" component={Edit} />
                         <RouteProtected path = "/contactus" component = {Contact} />
+                        <RouteProtected path = "/payments" component = {Payments} />
                     </Switch>
                     </div>
                 </div>
