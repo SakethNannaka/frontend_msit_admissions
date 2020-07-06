@@ -1,9 +1,7 @@
 import React from "react";
 
 import AuthApi from "../utils/AuthApi"
-// import { logout } from "../components/auth-api"
 import Navbar1 from "./navbar1.component"
-import * as reac from "react-bootstrap"
 
 export default function Logout() {
     const authApi = React.useContext(AuthApi)

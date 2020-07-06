@@ -102,3 +102,10 @@ hr#nine:before {
     border-width: 1px 0 0 0;
     border-radius: 15px;
   }
+  .responsive {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  

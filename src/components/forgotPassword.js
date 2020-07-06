@@ -4,7 +4,7 @@ import axios from "axios";
 import logo from "./logo.gif";
 //ui
 import * as reac from "react-bootstrap";
-import "./profile.css"
+import "./profile.css";
 
 /**
  * This page is for changing password whenever forgot it.It requires registered mail.
@@ -87,7 +87,10 @@ class ForgotPassword extends React.Component {
       password: this.state.newPassword,
     };
     axios
-      .post("https://flask-deploy-admissions.herokuapp.com/changepassword", loginData)
+      .post(
+        "https://flask-deploy-admissions.herokuapp.com/changepassword",
+        loginData
+      )
       .then((response) => {
         this.setState({
           buttonDisabled: false,
@@ -151,14 +154,20 @@ class ForgotPassword extends React.Component {
   };
 
   render() {
-    const { errors } = this.state;
     return (
       <reac.Container>
-        <reac.Row style = {{justifyContent: "center", justifyItems: "center",  margin: "100px", padding: "20px"}}>
+        <reac.Row
+          style={{
+            justifyContent: "center",
+            justifyItems: "center",
+            margin: "100px",
+            padding: "20px",
+          }}
+        >
           {/* <reac.Col></reac.Col>
           <reac.Col style={{ margin: "100px", padding: "40px 55px 45px 55px" }}> */}
           <div>
-          <div>
+            <div>
               <a href="https://msitprogram.net/">
                 <img src={logo} alt={"msitprogram"} height="50px" />
               </a>
@@ -239,7 +248,7 @@ class ForgotPassword extends React.Component {
                 </reac.Button>
               </div>
             </reac.Form>
-          {/* </reac.Col>
+            {/* </reac.Col>
           <reac.Col></reac.Col> */}
           </div>
         </reac.Row>

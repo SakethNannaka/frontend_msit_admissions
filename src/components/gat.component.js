@@ -49,14 +49,13 @@ export default class GatApplication extends Component {
    * Second one is two check whether last date is over or not immediately when user opens this page.
    */
   async componentDidMount() {
-    const { applied } = this.state;
     //getting email from localstorage in browser
     const email = localStorage.getItem("email");
     const details = {
       email: email,
     };
     //API call to fetch data whether user already applied or not
-    const res = await axios
+    axios
       .post("https://flask-deploy-admissions.herokuapp.com/gatApplication", details)
       .then((response) => {
         console.log("success");
