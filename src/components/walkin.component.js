@@ -7,6 +7,8 @@ import Select from "react-select";
 import Table from "react-bootstrap/Table";
 import "./GatApplication.css";
 import "./profile.css";
+import "./hrTags.css"
+
 
 
 export default class WalkinApplication extends Component {
@@ -96,7 +98,7 @@ export default class WalkinApplication extends Component {
     axios
       .post("https://flask-deploy-admissions.herokuapp.com/walkinDetails", walkinDetails)
       .then((result) => {
-        if (result.data.statuscode == "200") {
+        if (result.data.statuscode === "200") {
           this.setState({
             slotDate: result.data.slotDate,
             paymentStatus: result.data.paymentStatus,
@@ -118,17 +120,15 @@ export default class WalkinApplication extends Component {
     return (
       <div>
         <Navbar />
-        <br></br>
-        <br></br>
-        <br></br>
-        <div className="container" width="1250px">
-    <div className="view-account">
+
+        <div className="container">
+    <div className="view-account" style={{padding:'10px'}}>
       <section className="module">
         <div className="module-inner">
           <div className="side-bar">
 
 
-             <div className="user-info">
+             <div className="user-info" style={{marginTop:'50px'}}>
              <img id="pp"                     
                      className="img-profile img-circle img-responsive center-block"
                      src={image_url} 
@@ -180,10 +180,8 @@ export default class WalkinApplication extends Component {
             </nav>
           </div>
           <div className="content-panel">
-            <h2 className="title">
-              {/* Profile */}
-              <span className="pro-label label label-warning">Walk-in</span>
-            </h2>
+          <hr style={{marginTop:'100px'}}id="seven" data-symbol="Walkin"></hr>
+
         <Application
         this = {this}
           // applied={this.state.applied}
@@ -204,6 +202,8 @@ export default class WalkinApplication extends Component {
         /> */}
                 </div>
         </div>
+<p align = "center">MSIT Admissions @2020</p>
+
       </section>
     </div>
   </div>
@@ -249,7 +249,9 @@ const Walkin1 = (props) => {
   if (props.this.state.accepted === false) {
     return (
       <div>
+
         <reac.Row>
+
           <reac.Col className="note-box">
             <h5>
               Note: Dear applicant walk-in entrance test can be taken{" "}
@@ -306,7 +308,7 @@ const Walkin2 = (props) => {
     return (
       <div>
         <reac.Form onSubmit={props.this.handleSubmit}>
-          <br></br>
+          
           <p style={{ color: "red", fontSize:'15px'}} id="alerts"></p>
           <reac.Col className="note-box">
             <h5>
@@ -376,17 +378,15 @@ const AppliedApp = (props) => {
     totalScore = "";
   }
     return (
-      <div className="table">
+      <div className="container" style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+
+      
+      <div className="table" style={{justifyContent: "center", alignItems: "center"}}>
         <br></br>
-        <br></br>
-        <br></br>
-        <h5 style = {{paddingLeft: '350px'}}>Your Walkin Application Details</h5>
-        <br></br>
-        <br></br>
-        <Table striped bordered hover style = {{width: '80%'}}>
+        <Table responsive="md" striped bordered hover style = {{fontFamily:"Roboto", width: '100%', justifyContent: "center", alignItems: "center"}}>
           <thead>
             <tr>
-              <th style = {{width : '15%'}}>Application Number</th>
+              <th style = {{width : 'auto'}}>Application Number</th>
               <th>Test Center</th>
               <th>Payment Details</th>
               <th>Date {'&'} Slot</th>
@@ -403,6 +403,8 @@ const AppliedApp = (props) => {
             </tr>
           </tbody>
         </Table>
+      </div>
+
       </div>
     );
 };

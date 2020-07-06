@@ -11,16 +11,15 @@ export default class Process extends Component {
 
         return(
           
-              <Container style={{marginTop:'100px', padding:'75px'}}>
+              <Container style={{marginTop:'100px', padding:'50px'}}>
               <Row xs={"auto"} md={"auto"} lg={"auto"} sm={"auto"} style={{justifyContent:'center', alignItems:'center'}}>
               <div style={{display:'flex', flexDirection:'column'}}>
                 <div>
-                <h1 align="center">Welcome to MSIT Admissions 2020</h1>
+                {/* <h1 align="center">Welcome to MSIT Admissions 2020</h1> */}
                 </div>
-                <br></br>
-                <br></br>
-                <hr style={{backgroundColor:'red'}}></hr>
-                <br></br>
+
+                <hr id="seven" data-symbol="Welcome to MSIT Admissions 2020"></hr>
+
 
                 <Image src={msitprocess} fluid />
               </div>
@@ -30,21 +29,19 @@ export default class Process extends Component {
               <br></br>
               <Row xs={"auto"} md={"auto"} lg={"auto"} sm={"auto"} style={{justifyContent:'center', alignItems:'center'}}>
 
-              <Link className="nav-link" to={"/login"}><reac.Button variant="primary" style={{backgroundColor:'orange', float:'left'}} block>Click Here to SIGNIN</reac.Button>  </Link>       
+              <Link className="nav-link" to={"/login"}><reac.Button variant="primary" >Click Here to Sign-in</reac.Button> </Link>       
             
-              <Link className="nav-link" to={"/register"}><reac.Button variant="primary" style={{backgroundColor:'orange',float:'right'}} block>Click Here to SIGNUP</reac.Button>  </Link>             
+              <Link className="nav-link" to={"/register"}><reac.Button variant="primary" >Click Here to Sign-up</reac.Button> </Link>             
 
               </Row>
 
               <h1 align="center">or</h1>
-              <hr></hr>
               <div align="center">
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
               <Glogin/>
               </div>
              
               </Container>
-              
         )
     }
 }

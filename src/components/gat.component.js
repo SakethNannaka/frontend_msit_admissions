@@ -1,7 +1,7 @@
 //import following packages before run this file
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import * as reac from "react-bootstrap";
 import Select from "react-select";
 import Table from "react-bootstrap/Table";
@@ -9,6 +9,8 @@ import Table from "react-bootstrap/Table";
 import "./GatApplication.css";
 import Navbar from "./navbar1.component";
 import "./profile.css";
+import "./hrTags.css";
+
 
 
 /**
@@ -208,14 +210,14 @@ export default class GatApplication extends Component {
     axios
       .post("https://flask-deploy-admissions.herokuapp.com/gatDetails", gatDetails)
       .then((result) => {
-        if (result.data.status == "inserted") {
+        if (result.data.status === "inserted") {
           this.setState({
             paymentStatus: result.data.payment,
             appType: examOpt,
             applied: true,
           });
           alert("inserted successfully");
-        } else if (result.data.status == "updated") {
+        } else if (result.data.status === "updated") {
           this.setState({
             paymentStatus: result.data.payment,
             appType: examOpt,
@@ -242,17 +244,15 @@ export default class GatApplication extends Component {
     return (
       <div>
         <Navbar />
-        <br></br>
-        <br></br>
-        <br></br>
+
   
-    <div className="container" width="1250px">
-    <div className="view-account">
+    <div className="container">
+    <div className="view-account" style={{padding:'10px'}}>
       <section className="module">
         <div className="module-inner">
-          <div className="side-bar"     >
+          <div className="side-bar">
 
-             <div className="user-info">
+             <div className="user-info" style={{marginTop:'50px'}}>
 
              <img id="pp"                     
                      className="img-profile img-circle img-responsive center-block"
@@ -299,10 +299,9 @@ export default class GatApplication extends Component {
             </nav>
           </div>
           <div className="content-panel">
-            <h2 className="title">
-              {/* Profile */}
-              <span className="pro-label label label-warning">GAT</span>
-            </h2>
+
+            <hr style={{marginTop:'100px'}} id="seven" data-symbol="GAT/GRE"></hr>
+
         <Application
         this = {this}
           // applied={this.state.applied}
@@ -331,7 +330,10 @@ export default class GatApplication extends Component {
           editApplication={this.editApplication}
         /> */}
              </div>
+             <p align = "center">MSIT Admissions @2020</p>
+
         </div>
+
       </section>
     </div>
   </div>
@@ -348,9 +350,11 @@ const Application = (props) => {
   } else if (props.this.state.isValidDate && !props.this.state.applied) {
     return (        
 
-          <reac.Container className="main-content">
+          <reac.Container className="main-content"  style={{borderRadius:'5px', padding:'20px'}}>
+
         <reac.Row>
           <reac.Col>
+
             <h5 className="note-box">
               Dear Applicant, You have two ways to get Admission into MSIT
               <li>
@@ -368,9 +372,7 @@ const Application = (props) => {
           </reac.Col>
         </reac.Row>
         <br></br>
-        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;Please select your choice!!</h5>
+        <h5 align="center">Please select your choice!!</h5>
         <reac.Row>
           <reac.Col></reac.Col>
           <reac.Col>
@@ -455,7 +457,7 @@ const ApplyGAT = (props) => {
   if (props.this.state.examOpt === "GAT") {
     return (
       <reac.Form onSubmit={props.this.handleSubmit}>
-        <br></br>
+      
         <p style={{ color: "red", fontSize: '15px' }} id="alerts"></p>
         <reac.Form.Group className="formBasicUsername">
           <reac.Form.Label>Application Number*</reac.Form.Label>
@@ -566,9 +568,9 @@ const AppliedApp = (props) => {
   let paymentStatus = props.this.state.paymentStatus;
   let appType = props.this.state.appType;
   let button = <reac.Button onClick={props.this.editApplication}></reac.Button>;
-  if (props.this.state.applied && props.this.state.payment != "paid") {
+  if (props.this.state.applied && props.this.state.payment !== "paid") {
     button = (
-      <reac.Button onClick={props.this.editApplication}>
+      <reac.Button onClick={props.this.editApplication} style={{width:"auto"}}>
         CLICK HERE TO EDIT YOUR APPLICATION
       </reac.Button>
     );
@@ -581,9 +583,11 @@ const AppliedApp = (props) => {
   }
 
   return (
-    <div className="table">
-      <h5 style={{ textAlign: "center" }}>Your Gat Application Details</h5>
-      <Table striped bordered hover style = {{width: '80%'}}>
+    <div className="container" lg={"auto"} md={"auto"} sm={"auto"} xs={"auto"} style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+
+    <div className="table" style={{justifyContent: "center", alignItems: "center"}}>
+      <br></br>
+      <Table responsive="md" striped bordered hover style = {{fontFamily:"Roboto", width: '100%'}}>
         <thead>
           <tr>
             <th>Application Number</th>
@@ -606,6 +610,11 @@ const AppliedApp = (props) => {
           </tr>
         </tbody>
       </Table>
+
     </div>
+
+    </div>
+
+
   );
 };

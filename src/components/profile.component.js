@@ -3,16 +3,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import Navbar from "./navbar1.component";
 import "./profile.css"
-
-import { Button,Spinner,Table } from 'react-bootstrap';
-import {
-  DatePicker,
-  MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
-import DateFnsUtils from "@date-io/date-fns"; // import
-import { CountryDropdown} from 'react-country-region-selector';
+import "./hrTags.css"
+import { Button,Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-
 import Edit from "./editprofile.component"
 
 
@@ -31,13 +24,13 @@ function Session(props){
       
     return (
       <div>
-        <div className="container" width="1200px">
-          <div className="view-account">
+        <div className="container" >
+          <div className="view-account" style={{padding:'10px'}}>
             <section className="module">
               <div className="module-inner">
                 <div className="side-bar">
   
-                  <div className="user-info">
+                  <div className="user-info" style={{marginTop:'50px'}}>
   
                   <img id="pp"                     
                      className="img-profile img-circle img-responsive center-block"
@@ -64,7 +57,6 @@ function Session(props){
                           </Link>
                       </li>
 
-
                       <li>
                       <Link className="nav-link" to={"/gat"}>
                           <span className="fa fa-th"></span> GAT
@@ -79,16 +71,11 @@ function Session(props){
                   </nav>
                 </div>
                 <div className="content-panel">
-                  <h2 className="title">
-                    {/* Profile */}
-                    <span className="pro-label label label-warning">Profile View</span>
+ 
+            <hr style={{marginTop:'100px'}} id="seven" data-symbol="USER PROFILE"></hr>
 
-                  </h2>
+<Table responsive="md" striped bordered hover style={{fontSize:"small",fontFamily:"Roboto"}}>
 
-            <br></br>    
-
-<Table responsive style={{fontSize:"small",fontFamily:"Roboto",}}>
-<thead><h2>User Profile</h2></thead>
 <br></br>
 &nbsp;&nbsp;&nbsp;
 <Button variant="info" onClick={props.this.handleEditProfile}>Edit Profile</Button>{' '}<br></br>
@@ -161,31 +148,64 @@ function Session(props){
   }
   else{
     console.log("Waiting for did mount")
+ 
+ 
+    const url = "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg?random="+new Date().getTime()
+   
     return (
-      <div>
+    <div>
+        <div className="container" >
+          <div className="view-account" style={{padding:'10px'}}>
+            <section className="module">
+              <div className="module-inner">
+                <div className="side-bar">
+                  <div className="user-info" style={{marginTop:'50px'}}>
+  
+                  <img id="pp"                     
+                     className="img-profile img-circle img-responsive center-block"
+                     src={url} 
+                     alt=""
+                     onError={(e)=>{e.target.onerror = null; e.target.src="https://paradisevalleychristian.org/wp-content/uploads/2017/01/Blank-Profile.png"}} 
+                  />
+                    <ul className="meta list list-unstyled">
+                      <li className="name">
+                        <h4>{"User Name"}</h4>
+                      </li>
+                      <li className="email">
+                      
+                        <a href >{localStorage.getItem("email")}</a>
+                      </li>
+                      {/* <label className="label label-info">Applicant</label> */}
 
-<br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-    <Button variant="primary" disabled>
-    <Spinner
-      as="span"
-      animation="grow"
-      size="sm"
-      role="status"
-      aria-hidden="true"
-    />
-    &nbsp;  &nbsp;  
-    Loading...
-  </Button>
-</div>
-            );
+                  </ul>
+                  </div>
+                  <nav className="side-menu">
+                    <ul className="nav">
+                    <li className="active">
+                      <Link className="nav-link" to={"/profile"}>
+                          <span className="fa fa-user"></span> Profile
+                          </Link>
+                      </li>
+
+                      <li>
+                      <Link className="nav-link" to={"/gat"}>
+                          <span className="fa fa-th"></span> GAT
+                          </Link>
+                      </li>
+                      <li>
+                      <Link className="nav-link" to={"/walkin"}>
+                          <span className="fa fa-clock-o"></span> Walkin                      
+                          </Link>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+                </div>
+                </section>
+                </div>
+                </div>
+                </div>);
   }
-
 };
 
 
@@ -212,7 +232,7 @@ class Profile extends Component {
       date_of_birth:new Date(),
       parent_relation:"",
       nationality:"India",
-      photo_status:1,
+      photo_status:false,
       status:null,
       image_url: "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg?random="+new Date().getTime()
     };
@@ -237,14 +257,25 @@ class Profile extends Component {
 
 
   onChange = (e) => {
+    if (e.target.value.length < 3) {
+      document.getElementById("alerts1").innerHTML = 
+      `<div class='alert alert-danger alert-dismissible'>Minimum input length should be atleast 3 </div>`
+
+    } else {
+      document.getElementById("alerts1").innerHTML = ""
+    }
     this.setState({ [e.target.name]: e.target.value });
+
     console.log(this.state);
   };
 
 
   onChangeNumber = (e) => {
     if (e.target.name === "mobile_no" || e.target.name === "landline_no") {
-      document.getElementById("alerts1").innerHTML = "Mobile number should be 10 digits"
+      document.getElementById("alerts1").innerHTML = 
+      "<div class='alert alert-danger alert-dismissible'> Mobile number should be 10 digits</div>"
+
+      
       if(e.target.value.length >= 10) {
         document.getElementById("alerts1").innerHTML = ""
         e.target.value=e.target.value.slice(0,10)
@@ -252,46 +283,66 @@ class Profile extends Component {
     }
     
     if (e.target.name === "pincode") {
-      document.getElementById("alerts2").innerHTML = "pincode should be 6 digits"
-      if(e.target.value.length > 6) {
-        document.getElementById("alerts2").innerHTML = ""
+      document.getElementById("alerts1").innerHTML = 
+      "<div class='alert alert-danger alert-dismissible'>pincode should be 6 digits</div>"
+      
+      
+      if(e.target.value.length >= 6) {
+        document.getElementById("alerts1").innerHTML = ""
         e.target.value=e.target.value.slice(0, 6)
       }
     }
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.state);
   }
+
   onSubmit = (e) => {
     e.preventDefault();
+    const{full_name, parent_name, city, place_town, address_line1, address_line2} = this.state
+
+    if (full_name.length < 3 || parent_name.length < 3 || city.length < 3 || place_town.length < 3 || address_line1.length < 3 || address_line2.length < 3 ) {
+      document.getElementById("alerts1").innerHTML = 
+      `<div class='alert alert-danger alert-dismissible'>Minimum input length should be atleast 3 </div>`
+        return  
+    }
+
 
     if (this.state.mobile_no.length < 10 || this.state.landline_no.length < 10) {
         // alert("Mobile number should be atleast 10 digits")
         // document.getElementById("alerts1").innerHTML = "Mobile number should be atleast 10 digits"
-        document.getElementById("alerts1").innerHTML = "Mobile number should be 10 digits"
+        document.getElementById("alerts1").innerHTML = 
+      "<div class='alert alert-danger alert-dismissible'> Mobile number should be 10 digits</div>"
+
         return
-    }
+    } 
 
     if (this.state.pincode.length < 6) {
       // alert("pincode should be atleast 6 digits")
-      document.getElementById("alerts2").innerHTML = "Pincode should be 6 digits"
+      document.getElementById("alerts1").innerHTML = 
+      "<div class='alert alert-danger alert-dismissible'> Pincode should be 6 digits</div>"
+      
       return
     }
 
     if (this.state.board_name === "" || this.state.board_name === "N/A" || this.state.board_name === "Select 10th Board") {
-      document.getElementById("alerts2").innerHTML = "Select Board Name"
+      document.getElementById("alerts1").innerHTML =
+      "<div class='alert alert-danger alert-dismissible'>Select Board Name</div>"
+      
       return;
     } else {
-      document.getElementById("alerts2").innerHTML= ""
+      document.getElementById("alerts1").innerHTML= ""
     }
     
     if (this.state.btech === "" || this.state.btech === "N/A" || this.state.btech === "Select Btech Status") {
-      document.getElementById("alerts2").innerHTML = "Select Btech"
+      document.getElementById("alerts1").innerHTML = 
+      "<div class='alert alert-danger alert-dismissible'> Select Btech</div>"
+
       return;
     } else {
-      document.getElementById("alerts2").innerHTML= ""
+      document.getElementById("alerts1").innerHTML= ""
     }
     // this.setState({photo_status:true,educationdetails_status:true,status:true})
-    this.setState({"email":localStorage.getItem("email")});
+    this.setState({"email":localStorage.getItem("email"), "photo_status": true});
     console.log(this.state.email)
     console.log("********")
     console.log("submitted data",this.state)
@@ -307,6 +358,9 @@ class Profile extends Component {
     console.log("********")
 
   };
+
+
+
   changeGender = (e) => {  
     console.log("**********************")
     console.log("Gender",e.target.value,"Selected")
@@ -326,7 +380,7 @@ changeBoard = (e) => {
   })  ;
 
   if (this.state.board_name > 2) {
-    document.getElementById("alerts2").innerHTML = ""
+    document.getElementById("alerts1").innerHTML = ""
   }
   console.log(e.target.value)
   console.log(this.state)
@@ -378,12 +432,17 @@ onUploadFile(e) {
 
         if (this.state.profile_pic_upload.type !== "image/jpeg" ) {
           // return alert("JPEG or JPG images only")
-          return document.getElementById("alerts3").innerHTML = "JPEG or JPG images only"
+          return document.getElementById("alerts1").innerHTML = 
+      "<div class='alert alert-danger alert-dismissible'> JPEG or JPG images only</div>"
+          
       } else if (this.state.profile_pic_upload.size > 2000000) {
         // return alert("2mb")
-        return document.getElementById("alerts3").innerHTML = "Image size should be lessthan 2mb"
+        return document.getElementById("alerts1").innerHTML = 
+      "<div class='alert alert-danger alert-dismissible'> Image size should be lessthan 2mb</div>"
+        
+      
       } else {
-      document.getElementById("alerts3").innerHTML = ""
+      document.getElementById("alerts1").innerHTML = ""
 
 
     const formdata = new FormData()
@@ -442,8 +501,15 @@ handleEditProfile(){
   console.log("Edit Profile clicked");
   this.setState({status:"Edit"})
 }
+
+
 handleProfile(){
   console.log(" Profile clicked");
+  if (!this.state.photo_status) {
+    alert("Please submit the details first!!!")
+    return 
+  }
+
   this.setState({status:"True"})
 }
 
@@ -455,7 +521,7 @@ componentDidMount(){
   console.log("DID MOUNT","res.data",res.data,"state",this.state.status);
   if(res.data.message==="False"){
     localStorage.setItem("state",JSON.stringify(this.state));
-    this.setState({status:res.data.message})
+    this.setState({status:res.data.message, photo_status:false})
     console.log("DID MOUNT","res.data",res.data,"state",this.state.status);
   }
   else if(res.data.message==="True"){
@@ -491,16 +557,16 @@ componentDidMount(){
     console.log(this.state.status)
     return (
       <div>
-      <br></br>
         <Navbar/>
-        <br></br>
-        <br></br>
+
         <Session
           status={this.state.status}
           this={this}
         />
       </div>
+      
     );
   }
 }
+
 export default Profile;

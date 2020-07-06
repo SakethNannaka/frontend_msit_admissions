@@ -1,7 +1,8 @@
 import React, { useContext, useState} from "react";
 import GoogleLogin from 'react-google-login'
 import AuthApi from "../utils/AuthApi"
-import { Button } from '@material-ui/core';
+import * as reac from 'react-bootstrap';
+
 export default function Glogin(){
   const authApi = useContext(AuthApi);
 
@@ -26,9 +27,8 @@ export default function Glogin(){
 <GoogleLogin
     clientId="968104435960-tlorqb4lffa6um7p6tl5oit88fs06h7i.apps.googleusercontent.com"
     render={renderProps => (
-      <Button variant="contained" color="primary" onClick={renderProps.onClick} disabled={renderProps.disabled}>
-  Google Login
-</Button>
+              <reac.Button variant="primary" onClick={renderProps.onClick} disabled={renderProps.disabled} >Google Login</reac.Button>             
+
     )}
     buttonText="Login"
     onSuccess={responseGoogle}

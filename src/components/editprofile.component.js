@@ -11,7 +11,7 @@ import {
 import DateFnsUtils from "@date-io/date-fns"; // import
 import { CountryDropdown} from 'react-country-region-selector';
 import { Link } from 'react-router-dom'
-
+import "./hrTags.css"
 
 
 const IsNone = (props) => {
@@ -71,13 +71,13 @@ class Edit extends Component {
       <div>
       <div>
         
-        <div className="container" width="1250px">
-          <div className="view-account">
+        <div className="container" >
+          <div className="view-account" style={{padding:'10px'}}>
             <section className="module">
               <div className="module-inner">
                 <div className="side-bar">
   
-                <div className="user-info">
+                <div className="user-info" style={{marginTop:'50px'}}>
                 <img id="pp"                     
                      className="img-profile img-circle img-responsive center-block"
                      src={image_url} 
@@ -100,16 +100,18 @@ class Edit extends Component {
                   
                 </div>
                 <div className="content-panel">
-                  <h2 className="title">
-                    {/* Profile */}
-                    <span className="pro-label label label-warning">Edit Profile</span>
-                  </h2>
+
                   <form className="form-horizontal" onSubmit={this.props.prop.onSubmit}>
                     <fieldset className="fieldset">
-                      <h3 className="fieldset-title">Personal Info</h3>
+                   
+         
 
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <span id = "alerts3" style = {{color: "red", fontSize: "15px"}}></span>
+                      <hr  style={{marginTop:'100px'}} id="seven" data-symbol="Personal Info"></hr>
+
+
+                      <span id = "alerts1" style = {{justifyContent:'center', color: "red", fontSize: "15px"}}></span>
+                
+
                       <div className="form-group avatar">
                         <figure className="figure col-md-2 col-sm-3 col-xs-12">
                           <img
@@ -149,10 +151,12 @@ class Edit extends Component {
                           </button> */}
                         </div>
                       </div>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <span id = "alerts1" style = {{color: "red", fontSize: "15px"}}></span>
+
+
+
                       <br></br>
                       <br></br>
+                      
                       <div className="form-group">
                         <label className="col-md-2 col-sm-3 col-xs-12 control-label">
                           Full Name
@@ -179,6 +183,7 @@ class Edit extends Component {
                           Parent Name
                         </label>
                         <div className="col-md-10 col-sm-9 col-xs-12">
+                        <div class="d-flex flex-nowrap">
                           <input
                             type="text"
                             className="form-control"
@@ -189,11 +194,22 @@ class Edit extends Component {
                             onChange={this.props.prop.onChange}
                             defaultValue={userDetails.parent_name}
                           ></input>
+                          &nbsp; &nbsp; &nbsp;
+                          <select flaot="right" id="parent_relation" name="parent_relation"  onChange={this.props.prop.changeParentRelation}
+                            defaultValue={userDetails.parent_relation}
+                          >
+                            <option>Relationship</option>
+                            <option value="father">Father</option>
+                            <option value="mother">Mother</option>
+                            <option value="brother">Brother</option>
+                            <option value="other">Other</option>
+                          </select>
+                          </div>
                         </div>
                       </div>
   
                       
-                      <div className="form-group">
+                      {/* <div className="form-group">
                         <label className="col-md-2  col-sm-3 col-xs-12 control-label">
                           Parent Relation
                         </label>
@@ -208,23 +224,9 @@ class Edit extends Component {
                           </select>
                           &nbsp; &nbsp;
                         </div>
-                      </div>
+                      </div> */}
   
-                      <div className="form-group">
-                        <label className="col-md-2  col-sm-3 col-xs-12 control-label">
-                          Nationality
-                        </label>
-                        <div className="col-md-10 col-sm-9 col-xs-12">
-  
-                          <CountryDropdown
-                            name="nationality"
-                            id="nationality"
-                            value={this.props.prop.state.nationality}
-                            defaultValue={userDetails.nationality}
-                            onChange={this.props.prop.changeNationality} />
-                            </div>
-  
-                            </div>
+
                       <div className="form-group">
                         <label className="col-md-2 col-sm-3 col-xs-12 control-label">
                           Gender
@@ -281,10 +283,29 @@ class Edit extends Component {
                       </div>
   
                       <div className="form-group">
+                        <label className="col-md-2  col-sm-3 col-xs-12 control-label">
+                          Nationality
+                        </label>
+                        <div className="col-md-10 col-sm-9 col-xs-12" >
+  
+                          <CountryDropdown
+                            name="nationality"
+                            id="nationality"
+                            style={{ width: "250px" }}
+                            value={this.props.prop.state.nationality}
+                            defaultValue={userDetails.nationality}
+                            onChange={this.props.prop.changeNationality} />
+                        </div>
+  
+                      </div>
+
+                      <div className="form-group">
                         <label className="col-md-2 col-sm-3 col-xs-12 control-label">
                           Contact
                         </label>
                         <div className="col-md-10 col-sm-9 col-xs-12">
+                        <div class="d-flex flex-nowrap">
+
                           <input
                             type="number"
                             className="form-control"
@@ -296,7 +317,7 @@ class Edit extends Component {
                             defaultValue={userDetails.mobile_no}
                             required
                           ></input>
-                          &nbsp;
+                          &nbsp; &nbsp;&nbsp;
                           <input
                             type="number"
                             className="form-control"
@@ -307,6 +328,7 @@ class Edit extends Component {
                             onChange={this.props.prop.onChangeNumber}
                             required
                           ></input>
+                          </div>
                         </div>
                       </div>
                       <div className="form-group">
@@ -314,49 +336,60 @@ class Edit extends Component {
                           Address
                         </label>
                         <div className="col-md-10 col-sm-9 col-xs-12">
+                        
+                        <div class="d-flex flex-nowrap">
                           <input
                             type="text"
                             className="form-control"
                             placeholder="Address Lane 1"
                             name="address_line1"
                             required
-                            maxLength="20"
+                            maxLength="25"
+                            style={{ width: "250px" }}
                             onChange={this.props.prop.onChange}
                             defaultValue={userDetails.address_line1}
                           ></input>
-                          <br></br>
+                           &nbsp; &nbsp;&nbsp;
                           <input
                             type="text"
                             className="form-control"
                             placeholder="Address Lane 2"
                             name="address_line2"
-                            maxLength="20"
+                            maxLength="25"
+                            style={{ width: "250px" }}
                             onChange={this.props.prop.onChange}
                             defaultValue={userDetails.address_line2}
                             required
                           ></input>
+                          </div>
+
                           <br></br>
+                        <div class="d-flex flex-nowrap">
+
                           <input
                             type="text"
                             className="form-control"
                             placeholder="City"
                             name="city"
                             maxLength="15"
+                            style={{ width: "250px" }}
                             onChange={this.props.prop.onChange}
                             defaultValue={userDetails.city}
                             required
                           ></input>
-                          <br></br>
+                           &nbsp; &nbsp;&nbsp;
                           <input
                             type="text"
                             className="form-control"
                             placeholder="Town"
                             name="place_town"
                             maxLength="15"
+                            style={{ width: "250px" }}
                             onChange={this.props.prop.onChange}
                             defaultValue={userDetails.place_town}
                             required
                           ></input>
+                          </div>
                           <br></br>
                           <input
                             type="number"
@@ -364,40 +397,48 @@ class Edit extends Component {
                             placeholder="Pincode"
                             name="pincode"
                             maxLength="10"
+                            style={{ width: "250px" }}
                             onChange={this.props.prop.onChangeNumber}
                             defaultValue={userDetails.pincode}
                             required
                           ></input>
                         </div>
                       </div>
-                    </fieldset>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span id = "alerts2" style = {{color: "red", fontSize: "15px"}}></span>
-                    <br></br>
-                    <fieldset className="fieldset">
-                      <h3 className="fieldset-title">Educational Info</h3>
+                   
+    
+
+
                       <div className="form-group">
                         <label className="col-md-2  col-sm-3 col-xs-12 control-label">
                           Class 10
                         </label>
                         <div className="col-md-10 col-sm-9 col-xs-12">
-                          <select id="board_name" name="board_name" defaultValue={this.props.prop.state.board_name} onChange={this.props.prop.changeBoard}>
+                        <div class="d-flex flex-nowrap">
+
+                          <select
+                            id="board_name"
+                            name="board_name"
+                            style={{ width: "250px" }}
+                            defaultValue={this.props.prop.state.board_name}
+                            onChange={this.props.prop.changeBoard}>
                             <option >Select 10th Board</option>
                             <option value="ssc">SSC</option>
                             <option value="cbse">CBSE</option>
                             <option value="icse">ICSE</option>
                             
                           </select>
-                          &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; 
                           <input
-                            type="number"
+                            type="text"
                             name="board_number"
-                            placeholder="Hallticket"
-                            maxlength="13"
-                            onChange={this.props.prop.onChangeNumber}
+                            placeholder="Hallticket Number"
+                            maxlength="10"
+                            style={{ width: "250px" }}
+                            onChange={this.props.prop.onChange}
                             defaultValue={userDetails.board_number}
                             required
                           ></input>
+                          </div>
                         </div>
                       </div>
                       <div className="form-group">
@@ -405,43 +446,55 @@ class Edit extends Component {
                           B.Tech
                         </label>
                         <div className="col-md-10 col-sm-9 col-xs-12">
-                          
-                          <label
-                            className="form-check-label"
-                            htmlFor="exampleRadios1"
-                          >
-                          </label>
-                          <select
-                            id="btech2"
-                            name="btech"
-                            defaultValue={this.props.prop.state.btech}
-                            onChange={this.props.prop.onChange}
-                          >
-                            <option>Select Btech Status</option>
-                            <option value="2020">Final Year Pursuing</option>
-                            <option value="2019">2019</option>
-                            <option value="2018">2018</option>
-                            <option value="2017">2017</option>
-                            <option value="2016">2016</option>
-                            <option value="2015">2015</option>
-                            <option value="2014">2014</option>
-                            <option value="2013">2013</option>
-                            <option value="2012">2012</option>
-                            <option value="2011">2011</option>
-                          </select>
+                          <div class="d-flex flex-nowrap">
+                            
+                            <label
+                              className="form-check-label"
+                              htmlFor="exampleRadios1"
+                            >
+                            </label>
+                            <select
+                              id="btech2"
+                              name="btech"
+                              style={{ width: "250px" }}
+                              defaultValue={this.props.prop.state.btech}
+                              onChange={this.props.prop.onChange}
+                            >
+                              <option>Select Btech Status</option>
+                              <option value="2020">Final Year Pursuing</option>
+                              <option value="2019">2019</option>
+                              <option value="2018">2018</option>
+                              <option value="2017">2017</option>
+                              <option value="2016">2016</option>
+                              <option value="2015">2015</option>
+                              <option value="2014">2014</option>
+                              <option value="2013">2013</option>
+                              <option value="2012">2012</option>
+                              <option value="2011">2011</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </fieldset>
-                    <hr></hr>
+                      <br></br>
+                      <br></br>
+
                     <div className="form-group">
                       <div className="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
-                        <input
-                          className="btn btn-primary"
-                          type="submit"
-                          value="Update Profile"
-                        ></input>
+
+                        <Button
+                          style={{height:'25px'}}
+                          onClick={this.props.prop.handleProfile}
+                          variant="secondary"
+                         >Cancel</Button>
+                        &nbsp; &nbsp; &nbsp;
+                        <Button
+                          style={{height:'25px'}}
+                          onClick={this.props.prop.onSubmit}
+                          variant="primary"
+                         >Submit</Button>
                       </div>
-                    </div>
+                      </div>
                   </form>
 
                 </div>

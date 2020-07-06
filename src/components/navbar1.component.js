@@ -35,17 +35,15 @@ export default function Navbar() {
               <reac.Nav className="mr-auto">
               </reac.Nav>
               <reac.Nav>
-              <reac.NavDropdown title="Account" id="collasible-nav-dropdown">
-                  <Link to={"/changepassword"}>Change Password</Link>
-                  <br></br>
-                  <Link to={"/contactus"}>Help</Link>
-                  <br></br>
-                  {/* <reac.NavDropdown.Item><Link to = {"/logout"}>Logout</Link></reac.NavDropdown.Item> */}
+              <reac.NavDropdown  title="Account" id="collasible-nav-dropdown">
+                  <reac.NavDropdown.Item><Link to={"/profile"} style={{textDecoration:'none', color:'black'}}>Home</Link></reac.NavDropdown.Item>
+                  <reac.NavDropdown.Item><Link to={"/changepassword"} style={{textDecoration:'none', color:'black'}}>Change Password</Link></reac.NavDropdown.Item>
+                  <reac.NavDropdown.Item><Link to={"/contactus"} style={{textDecoration:'none', color:'black'}}>Help</Link></reac.NavDropdown.Item>
+                  <reac.NavDropdown.Item><a href onClick={handleLogout}>Logout</a></reac.NavDropdown.Item>
+               
                 </reac.NavDropdown>
-                <reac.NavItem><Link to={"/profile"}><reac.Button variant="success">Home</reac.Button></Link></reac.NavItem> &nbsp; &nbsp;
-                <reac.NavItem ><reac.Button variant="success" type="submit" onClick = {handleLogout}>
-                  Logout
-                </reac.Button></reac.NavItem>
+                
+                <reac.NavItem ><Link className="nav-link" to={"/profile"}>Home</Link></reac.NavItem>
               </reac.Nav>
             </reac.Navbar.Collapse>
           </reac.Navbar>

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import * as reac from "react-bootstrap";
 import AuthApi from "../utils/AuthApi"
+import "./hrTags.css"
 
 export default function Login() {
 
@@ -49,8 +50,9 @@ export default function Login() {
 
 
     return (
-      <reac.Container style={{fontSize:"small"}}>
-            <reac.Row style = {{justifyContent: "center", justifyItems: "center", margin: "100px",  padding: "20px"}}>
+      <reac.Container>
+
+        <reac.Row style = {{justifyContent: "center", justifyItems: "center",  margin: "100px",  padding: "20px"}}>
           {/* <reac.Col></reac.Col> */}
           {/* <reac.Col style={{ margin: "100px", padding: "40px 55px 45px 55px" }}> */}
             <div>
@@ -60,8 +62,7 @@ export default function Login() {
                 </a>
               </div>
               <br></br>
-              <hr></hr>
-              <h3 align="center">Login</h3>
+              <hr id="seven" data-symbol="LOGIN"></hr>
               <br></br>
               <p style={{ color: "red" }} id="alerts"></p>
               <reac.Form onSubmit={loginSubmit} className="content">
@@ -98,8 +99,12 @@ export default function Login() {
               </reac.Form>
 
               <div className="footer">
-                <div className="ml-auto">
-                  <Link to="/forgotPassword" className="forgot">
+                <div className="d-flex flex-nowrap">
+                  <Link className="order-1 p-2" to="/Register" >
+                    Register Here
+                  &nbsp; &nbsp; &nbsp;
+                  </Link>
+                  <Link className="order-3 p-2" to="/forgotPassword">
                     Forgot Password?
                   </Link>
                 </div>
