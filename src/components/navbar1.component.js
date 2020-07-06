@@ -68,6 +68,11 @@ export default function Navbar() {
               Home
             </Link>
           </reac.NavItem>
+          <reac.NavItem>
+                <Link className="nav-link" to={"/payments"}>
+                  payments
+                </Link>
+              </reac.NavItem>
         </reac.Nav>
       </reac.Navbar.Collapse>
     </reac.Navbar>
