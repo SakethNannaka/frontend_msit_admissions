@@ -15,7 +15,7 @@ const paymentHandler = async (e) => {
   const { data } = response;
 
   const options = {
-    key: "rzp_test_emOLmEoveDJMNM",
+    key: "rzp_live_FGdmm48CwAcMir",
     name: "MSIT PROGRAM",
     description: "Some Description",
     order_id: data.id,
