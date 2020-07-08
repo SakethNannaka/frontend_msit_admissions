@@ -39,12 +39,13 @@ class Payments extends Component {
         <br></br>
         <br></br>
         <Button
-          variant="outline-primary"
+          variant="primary"
           style={{ width: "10%" }}
           onClick={paymentHandler}
         >
           Pay Now
         </Button>
+        <a href="https://rzp.io/l/7Pq687b" className="btn-btn-primary">Pay Now</a>
       </div>
     );
   }
