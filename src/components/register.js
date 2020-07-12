@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-// import "./login.css";
 import logo from "./logo.gif";
 import * as reac from "react-bootstrap";
+// import "../index.css";
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -22,8 +22,8 @@ export default class SignUp extends Component {
 
     this.handleDropdownChange = this.handleDropdownChange.bind(this);
   }
-
   handleChange = (event) => {
+    console.log(event.target.name, event.target.value);
     this.setState({ education: event.target.value });
     document.getElementById("alerts").innerHTML = "";
   };
@@ -34,26 +34,53 @@ export default class SignUp extends Component {
   }
 
   updateName = (event) => {
+    console.log(event.target.name, event.target.value);
     this.setState({ name: event.target.value });
-    document.getElementById("alerts").innerHTML = "";
+    document.getElementById("alerts1").innerHTML = "";
+    if (this.state.name.length < 2) {
+      document.getElementById("alerts1").innerHTML =
+        "<span> Name should be atleast 3 characters</span>";
+    } else {
+      document.getElementById("alerts1").innerHTML = "";
+    }
   };
   updateEmail = (event) => {
+    console.log(event.target.name, event.target.value);
     this.setState({ email: event.target.value });
     document.getElementById("alerts").innerHTML = "";
   };
 
   updatePassword = (event) => {
+    console.log(event.target.name, event.target.value);
+    if (this.validatePassword(event.target.value)) {
+      document.getElementById("alerts4").innerHTML = "";
+    } else {
+      document.getElementById("alerts4").innerHTML =
+        "<span>Password must have at least LC, UC, Num, SC</span>";
+    }
     this.setState({ password: event.target.value });
-    document.getElementById("alerts").innerHTML = "";
   };
   updateCnfPassword = (event) => {
+    console.log(event.target.name, event.target.value);
+    console.log(this.state.password, this.state.cnfPassword);
+    if (event.target.value === this.state.password) {
+      document.getElementById("alerts5").innerHTML = "";
+    } else {
+      document.getElementById("alerts5").innerHTML =
+        "<span>Password's Doesn't match</span>";
+    }
     this.setState({ cnfPassword: event.target.value });
-    document.getElementById("alerts").innerHTML = "";
   };
 
   updateContact = (event) => {
+    console.log(event.target.name, event.target.value);
     this.setState({ contact: event.target.value.slice(0, 10) });
-    document.getElementById("alerts").innerHTML = "";
+    if (this.state.contact.length < 9) {
+      document.getElementById("alerts2").innerHTML =
+        "<span>Contact should be atleast 10 digits</span>";
+    } else {
+      document.getElementById("alerts2").innerHTML = "";
+    }
   };
 
   validatePassword(inp) {
@@ -66,14 +93,6 @@ export default class SignUp extends Component {
     ) {
       return true;
     } else {
-      // alert("Password should consist of one upper case and lower case letter," +
-      // "one number, one special character and min length should be 6 chars");    //The pop up alert for a valid email address
-      document.getElementById("alerts").innerHTML =
-        "Password should consist of one upper case and lower case letter,one number, one special character and min length should be 6 chars";
-      this.setState({
-        password: "",
-        cnfPassword: "",
-      });
       return false;
     }
   }
@@ -81,16 +100,16 @@ export default class SignUp extends Component {
   registerSubmit = (event) => {
     event.preventDefault();
     const { password, cnfPassword, name, contact } = this.state;
-    if (name.length <= 5) {
-      document.getElementById("alerts").innerHTML =
-        "Name should be atleast 6 characters";
+    if (name.length < 3) {
+      document.getElementById("alerts1").innerHTML =
+        "Name should be atleast 3 characters";
       this.setState({
         name: "",
       });
       return;
     }
-    if (contact.length < 10 || contact.length > 10) {
-      document.getElementById("alerts").innerHTML =
+    if (contact.length < 9) {
+      document.getElementById("alerts2").innerHTML =
         "Contact should be atleast 10 digits";
       this.setState({
         contact: "",
@@ -98,9 +117,7 @@ export default class SignUp extends Component {
       return;
     }
     if (password !== cnfPassword) {
-      // alert("Confirm password doesn't match");
-      document.getElementById("alerts").innerHTML =
-        "Confirm password doesn't match";
+      document.getElementById("alerts5").innerHTML = "Password's doesn't match";
       this.setState({
         password: "",
         cnfPassword: "",
@@ -109,8 +126,8 @@ export default class SignUp extends Component {
     }
 
     if (this.state.education === "" || this.state.education === "N/A") {
-      document.getElementById("alerts").innerHTML =
-        "education field should be selected";
+      document.getElementById("alerts6").innerHTML =
+        "Education field should be selected";
       this.setState({
         education: "",
       });
@@ -136,7 +153,6 @@ export default class SignUp extends Component {
             loading: false,
           });
           if (result.data.statuscode === 400) {
-            // alert("Email already exists")
             document.getElementById("alerts").innerHTML =
               "Email already exists. Please login to continue";
             this.setState({
@@ -147,7 +163,6 @@ export default class SignUp extends Component {
             });
             // window.location = "/login"
           } else if (result.data.statuscode === 500) {
-            // alert(result.data.error)
             document.getElementById("alerts").innerHTML = result.data.message;
             this.setState({
               email: "",
@@ -158,7 +173,6 @@ export default class SignUp extends Component {
           } else {
             window.location = "/login";
           }
-          //this.props.history.push("/login")
         })
         .catch((error) => {
           this.setState({
@@ -166,6 +180,11 @@ export default class SignUp extends Component {
             loading: false,
           });
         });
+    } else {
+      this.setState({
+        password: "",
+        cnfPassword: "",
+      });
     }
   };
   render() {
@@ -179,8 +198,6 @@ export default class SignUp extends Component {
             padding: "20px",
           }}
         >
-          {/* <reac.Col></reac.Col>
-              <reac.Col style = {{margin: "100px", padding: "40px 55px 45px 55px"}}> */}
           <div>
             <div>
               <a href="https://msitprogram.net/">
@@ -189,11 +206,19 @@ export default class SignUp extends Component {
             </div>
             <br></br>
             <hr id="seven" data-symbol="REGISTER"></hr>
+            <span style={{ color: "red", fontSize: "10px" }} id="alerts"></span>
 
-            <reac.Form onSubmit={this.registerSubmit} style={{fontSize:"medium"}}>
+            <reac.Form
+              onSubmit={this.registerSubmit}
+              style={{ fontSize: "medium" }}
+            >
               <br></br>
-              <p style={{ color: "red" }} id="alerts"></p>
-              <reac.Form.Group className="formBasicUsername" >
+              <span
+                style={{ color: "red", fontSize: "10px" }}
+                id="alerts1"
+              ></span>
+
+              <reac.Form.Group className="formBasicUsername">
                 <reac.Form.Label>User Name</reac.Form.Label>
                 <reac.Form.Control
                   type="text"
@@ -205,6 +230,12 @@ export default class SignUp extends Component {
                   onChange={this.updateName}
                 />
               </reac.Form.Group>
+
+              <span
+                style={{ color: "red", fontSize: "10px" }}
+                id="alerts3"
+              ></span>
+
               <reac.Form.Group controlId="formBasicEmail">
                 <reac.Form.Label>Email address</reac.Form.Label>
                 <reac.Form.Control
@@ -217,6 +248,10 @@ export default class SignUp extends Component {
                   onChange={this.updateEmail}
                 />
               </reac.Form.Group>
+              <span
+                style={{ color: "red", fontSize: "10px" }}
+                id="alerts2"
+              ></span>
 
               <reac.Form.Group controlId="formBasicContact">
                 <reac.Form.Label>Contact Number</reac.Form.Label>
@@ -233,6 +268,11 @@ export default class SignUp extends Component {
                 />
               </reac.Form.Group>
 
+              <span
+                style={{ color: "red", fontSize: "10px" }}
+                id="alerts4"
+              ></span>
+
               <reac.Form.Group controlId="formBasicPassword">
                 <reac.Form.Label>Password</reac.Form.Label>
                 <reac.Form.Control
@@ -245,10 +285,17 @@ export default class SignUp extends Component {
                   onChange={this.updatePassword}
                 />
               </reac.Form.Group>
+
+              <span
+                style={{ color: "red", fontSize: "10px" }}
+                id="alerts5"
+              ></span>
+
               <reac.Form.Group controlId="formBasicConfirmPassword">
                 <reac.Form.Label>Confirm Password</reac.Form.Label>
                 <reac.Form.Control
                   type="password"
+                  name="cnfPassword"
                   className="form-control"
                   placeholder="Re-enter password"
                   required={true}
@@ -256,6 +303,10 @@ export default class SignUp extends Component {
                   onChange={this.updateCnfPassword}
                 />
               </reac.Form.Group>
+              <span
+                style={{ color: "red", fontSize: "10px" }}
+                id="alerts6"
+              ></span>
 
               <reac.Form.Group controlId="formBasicConfirmPassword">
                 <label>Education</label>
@@ -298,6 +349,7 @@ export default class SignUp extends Component {
                   </div>
                 </div>
               </reac.Form.Group>
+
               <reac.Button variant="primary" type="submit" block>
                 Submit
               </reac.Button>
@@ -305,8 +357,6 @@ export default class SignUp extends Component {
                 Already registered <Link to="/login">Login</Link>
               </p>
             </reac.Form>
-            {/* </reac.Col>
-                      <reac.Col></reac.Col> */}
           </div>
         </reac.Row>
       </reac.Container>

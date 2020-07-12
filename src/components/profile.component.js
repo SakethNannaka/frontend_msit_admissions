@@ -46,7 +46,6 @@ function Session(props) {
                       <li className="email">
                         <a href>{userDetails.email}</a>
                       </li>
-                      {/* <label className="label label-info">Applicant</label> */}
                     </ul>
                   </div>
                   <nav className="side-menu">
@@ -200,7 +199,6 @@ function Session(props) {
                       <li className="email">
                         <a href>{localStorage.getItem("email")}</a>
                       </li>
-                      {/* <label className="label label-info">Applicant</label> */}
                     </ul>
                   </div>
                   <nav className="side-menu">
@@ -340,7 +338,7 @@ class Profile extends Component {
     ) {
       document.getElementById(
         "alerts1"
-      ).innerHTML = `<div class='alert alert-danger alert-dismissible'>Minimum input length should be atleast 3 </div>`;
+      ).innerHTML = `<div class='alert alert-danger'>Minimum input length should be atleast 3 </div>`;
       return;
     }
 
@@ -351,7 +349,7 @@ class Profile extends Component {
       // alert("Mobile number should be atleast 10 digits")
       // document.getElementById("alerts1").innerHTML = "Mobile number should be atleast 10 digits"
       document.getElementById("alerts1").innerHTML =
-        "<div class='alert alert-danger alert-dismissible'> Mobile number should be 10 digits</div>";
+        "<div class='alert alert-danger'> Mobile number should be 10 digits</div>";
 
       return;
     }
@@ -359,7 +357,7 @@ class Profile extends Component {
     if (this.state.pincode.length < 6) {
       // alert("pincode should be atleast 6 digits")
       document.getElementById("alerts1").innerHTML =
-        "<div class='alert alert-danger alert-dismissible'> Pincode should be 6 digits</div>";
+        "<div class='alert alert-danger'> Pincode should be 6 digits</div>";
 
       return;
     }
@@ -370,7 +368,7 @@ class Profile extends Component {
       this.state.board_name === "Select 10th Board"
     ) {
       document.getElementById("alerts1").innerHTML =
-        "<div class='alert alert-danger alert-dismissible'>Select Board Name</div>";
+        "<div class='alert alert-danger'>Select Board Name</div>";
 
       return;
     } else {

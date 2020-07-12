@@ -19,7 +19,7 @@ export default class Navbar extends Component {
           variant="dark"
         >
           <reac.Navbar.Brand>
-            <div class="logo">
+            <div className="logo">
               <img alt="" src={logo} className="responsive" />
             </div>
           </reac.Navbar.Brand>

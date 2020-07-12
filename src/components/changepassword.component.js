@@ -87,12 +87,14 @@ export default class ChangePassword extends Component {
               {/* <reac.Col></reac.Col>
               <reac.Col style = {{margin: "150px"}}> */}
               <div>
-              <div className = "ml-auto">
+              <div className = "logo">
                         <a href="https://msitprogram.net/">
                           <img src={logo} alt = "msitlogo" height = "50px"/>
                         </a>
                 </div>
                 <br></br>
+                <hr id="seven" data-symbol="Change Password"></hr>
+
                 <reac.Form onSubmit = {this.onSubmit} className = "login-form">
                 <h3>ChangePassword</h3>
                 <br></br>

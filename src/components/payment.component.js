@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import Navbar from "./navbar1.component";
 import "./profile.css";
 import Axios from "axios";
-import {Button} from "react-bootstrap"
+import { Button } from "react-bootstrap";
 
 const paymentHandler = async (e) => {
-  const API_URL = "https://flask-deploy-admissions.herokuapp.com/orders";
+  const API_URL = "https://flask-deploy-admissions.herokuapp.com/";
   e.preventDefault();
-  const orderUrl = `${API_URL}`;
+  const orderUrl = `${API_URL}orders`;
   console.log(orderUrl);
   const response = await Axios.get(orderUrl);
   console.log(response);
-
+  console.log(response.razorpay_payment_id);
+  
   const { data } = response;
 
   const options = {
@@ -19,6 +20,20 @@ const paymentHandler = async (e) => {
     name: "MSIT PROGRAM",
     description: "Some Description",
     order_id: data.id,
+    handler: async (response) => {
+      try {
+        console.log(response.razorpay_payment_id);
+        alert("payment sucessfull",response);
+        console.log(response);
+        const paymentId = response.razorpay_payment_id;
+        const url = `${API_URL}fetch`;
+        const captureResponse = await Axios.post(url, {paymentId});
+        console.log(captureResponse.data);
+      } catch (err) {
+        console.log(err);
+        alert(err)
+      }
+    },
     theme: {
       color: "#686CFD",
     },
@@ -45,7 +60,9 @@ class Payments extends Component {
         >
           Pay Now
         </Button>
-        <a href="https://rzp.io/l/7Pq687b" className="btn-btn-primary">Pay Now</a>
+        <a href="https://rzp.io/l/7Pq687b" className="btn-btn-primary">
+          Pay Now
+        </a>
       </div>
     );
   }

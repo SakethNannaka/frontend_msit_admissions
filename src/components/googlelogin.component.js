@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import GoogleLogin from "react-google-login";
 import AuthApi from "../utils/AuthApi";
 import * as reac from "react-bootstrap";
@@ -39,7 +39,6 @@ export default function Glogin() {
         onFailure={Failed}
         cookiePolicy={"single_host_origin"}
       />
-      ,
     </div>
   );
 }
