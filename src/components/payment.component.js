@@ -26,8 +26,8 @@ const paymentHandler = async (e) => {
         alert("payment sucessfull",response);
         console.log(response);
         const paymentId = response.razorpay_payment_id;
-        const url = `${API_URL}fetch`;
-        const captureResponse = await Axios.post(url, {paymentId});
+        const url = `${API_URL}fetch/${paymentId}`;
+        const captureResponse = await Axios.get(url);
         console.log(captureResponse.data);
       } catch (err) {
         console.log(err);
