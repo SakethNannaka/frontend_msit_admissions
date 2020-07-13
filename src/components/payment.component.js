@@ -19,6 +19,7 @@ const paymentHandler = async (e) => {
     key: "rzp_live_FGdmm48CwAcMir",
     name: "MSIT PROGRAM",
     description: "Some Description",
+    image: 'https://admissions-react-msit.herokuapp.com/static/media/logo.3973b5b7.png',
     order_id: data.id,
     handler: async (response) => {
       try {
