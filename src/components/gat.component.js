@@ -1,7 +1,7 @@
 //import following packages before run this file
 import React, { Component } from "react";
 import axios from "axios";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as reac from "react-bootstrap";
 import Select from "react-select";
 import Table from "react-bootstrap/Table";
@@ -10,8 +10,8 @@ import "./GatApplication.css";
 import Navbar from "./navbar1.component";
 import "./profile.css";
 import "./hrTags.css";
-
-
+import Payments from "./payment.component";
+import printDiv from "./hallticket.component";
 
 /**
  * This class is to apply,display,edit GAT application.When user clicks
@@ -56,7 +56,10 @@ export default class GatApplication extends Component {
     };
     //API call to fetch data whether user already applied or not
     axios
-      .post("https://flask-deploy-admissions.herokuapp.com/gatApplication", details)
+      .post(
+        "https://flask-deploy-admissions.herokuapp.com/gatApplication",
+        details
+      )
       .then((response) => {
         console.log("success");
         const data = response.data;
@@ -199,15 +202,19 @@ export default class GatApplication extends Component {
     if (this.state.analyticalError) {
       return;
     }
-    if (this.state.testCenter === "" || this.state.testCenter=== "N/A") {
-      document.getElementById("alerts").innerHTML = "Test center should be selected";
+    if (this.state.testCenter === "" || this.state.testCenter === "N/A") {
+      document.getElementById("alerts").innerHTML =
+        "Test center should be selected";
       this.setState({
-        testCenter: ""
-      })
+        testCenter: "",
+      });
       return;
     }
     axios
-      .post("https://flask-deploy-admissions.herokuapp.com/gatDetails", gatDetails)
+      .post(
+        "https://flask-deploy-admissions.herokuapp.com/gatDetails",
+        gatDetails
+      )
       .then((result) => {
         if (result.data.status === "inserted") {
           this.setState({
@@ -239,85 +246,92 @@ export default class GatApplication extends Component {
    */
   render() {
     const userDetails = JSON.parse(localStorage.getItem("state"));
-    const image_url   ="https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg" ;
+    const image_url =
+      "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/" +
+      localStorage.getItem("email") +
+      ".jpeg";
     return (
       <div>
         <Navbar />
 
-  
-    <div className="container">
-    <div className="view-account" style={{padding:'10px'}}>
-      <section className="module">
-        <div className="module-inner">
-          <div className="side-bar">
-
-             <div className="user-info" style={{marginTop:'50px'}}>
-
-             <img id="pp"                     
-                     className="img-profile img-circle img-responsive center-block"
-                     src={image_url} 
-                     alt=""
-                     onError={(e)=>{e.target.onerror = null; e.target.src="https://paradisevalleychristian.org/wp-content/uploads/2017/01/Blank-Profile.png"}} 
-                     />
-                <ul className="meta list list-unstyled">
-                  <li className="name">
-                    <h4>{userDetails.full_name}</h4>
-                  </li>
-                  <li className="email">
-                    <a href >{userDetails.email}</a>
-                  </li>
-                  {/* <label className="label label-info">Applicant</label> */      }
-
-                </ul>
-            </div>
+        <div className="container">
+          <div className="view-account" style={{ padding: "10px" }}>
+            <section className="module">
+              <div className="module-inner">
+                <div className="side-bar">
+                  <div className="user-info" style={{ marginTop: "50px" }}>
+                    <img
+                      id="pp"
+                      className="img-profile img-circle img-responsive center-block"
+                      src={image_url}
+                      alt=""
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src =
+                          "https://paradisevalleychristian.org/wp-content/uploads/2017/01/Blank-Profile.png";
+                      }}
+                    />
+                    <ul className="meta list list-unstyled">
+                      <li className="name">
+                        <h4>{userDetails.full_name}</h4>
+                      </li>
+                      <li className="email">
+                        <a href>{userDetails.email}</a>
+                      </li>
+                      {/* <label className="label label-info">Applicant</label> */}
+                    </ul>
+                  </div>
 
                   <nav className="side-menu">
                     <ul className="nav">
-                     <li>
-                      <Link className="nav-link" to={"/profile"}>
-                          <span className="fa fa-user"></span> Profile                      
-                          </Link>
-                      </li>   
+                      <li>
+                        <Link className="nav-link" to={"/profile"}>
+                          <span className="fa fa-user"></span> Profile
+                        </Link>
+                      </li>
 
                       <li className="active">
-                      <Link className="nav-link" to={"/gat"}>
+                        <Link className="nav-link" to={"/gat"}>
                           <span className="fa fa-th"></span> GAT
-                          </Link>
+                        </Link>
                       </li>
                       <li>
-                      <Link className="nav-link" to={"/walkin"}>
-                          <span className="fa fa-clock-o"></span> Walkin                      
-                          </Link>
+                        <Link className="nav-link" to={"/walkin"}>
+                          <span className="fa fa-clock-o"></span> Walkin
+                        </Link>
                       </li>
                       {/* <li>
                       <a href >
                           <span className="fa fa-cog"></span> Edit Profile
                           </a>
                       </li> */}
-              </ul>
-            </nav>
-          </div>
-          <div className="content-panel">
+                    </ul>
+                  </nav>
+                </div>
+                <div className="content-panel">
+                  <hr
+                    style={{ marginTop: "100px" }}
+                    id="seven"
+                    data-symbol="GAT/GRE"
+                  ></hr>
 
-            <hr style={{marginTop:'100px'}} id="seven" data-symbol="GAT/GRE"></hr>
-
-        <Application
-        this = {this}
-          // applied={this.state.applied}
-          // examOpt={this.state.examOpt}
-          // applicationNo={this.state.applicationNo}
-          // quantVerbal={this.state.quantVerbal}
-          // analytical={this.state.analytical}
-          // quantVerbalError={this.state.quantVerbalError}
-          // analyticalError={this.state.analyticalError}
-          // isValidDate={this.state.isValidDate}
-          // buttonDisabled={this.state.buttonDisabled}
-          // onChange={this.onChange}
-          // handleChange={this.handleChange}
-          // handleSubmit={this.handleSubmit}
-          // handleDropdownChange={this.handleDropdownChange}
-        />
-        {/* <AppliedApp
+                  <Application
+                    this={this}
+                    // applied={this.state.applied}
+                    // examOpt={this.state.examOpt}
+                    // applicationNo={this.state.applicationNo}
+                    // quantVerbal={this.state.quantVerbal}
+                    // analytical={this.state.analytical}
+                    // quantVerbalError={this.state.quantVerbalError}
+                    // analyticalError={this.state.analyticalError}
+                    // isValidDate={this.state.isValidDate}
+                    // buttonDisabled={this.state.buttonDisabled}
+                    // onChange={this.onChange}
+                    // handleChange={this.handleChange}
+                    // handleSubmit={this.handleSubmit}
+                    // handleDropdownChange={this.handleDropdownChange}
+                  />
+                  {/* <AppliedApp
         this = {this}
           applied={this.state.applied}
           applicationNo={this.state.applicationNo}
@@ -328,15 +342,12 @@ export default class GatApplication extends Component {
           appType={this.state.appType}
           editApplication={this.editApplication}
         /> */}
-             </div>
-             <p align = "center">MSIT Admissions @2020</p>
-
+                </div>
+                <p align="center">MSIT Admissions @2020</p>
+              </div>
+            </section>
+          </div>
         </div>
-
-      </section>
-    </div>
-  </div>
-     
       </div>
     );
   }
@@ -347,13 +358,13 @@ const Application = (props) => {
     console.log("null");
     return <div></div>;
   } else if (props.this.state.isValidDate && !props.this.state.applied) {
-    return (        
-
-          <reac.Container className="main-content"  style={{borderRadius:'5px', padding:'20px'}}>
-
+    return (
+      <reac.Container
+        className="main-content"
+        style={{ borderRadius: "5px", padding: "20px" }}
+      >
         <reac.Row>
           <reac.Col>
-
             <h5 className="note-box">
               Dear Applicant, You have two ways to get Admission into MSIT
               <li>
@@ -407,14 +418,14 @@ const Application = (props) => {
           <reac.Col></reac.Col>
           <reac.Col>
             <ApplyGAT
-            this = {props.this}
+              this={props.this}
               // examOpt={props.examOpt}
               // applicationNo={props.applicationNo}
               // handleDropdownChange={props.handleDropdownChange}
               // handleSubmit={props.handleSubmit}
             />
             <ApplyGRE
-            this = {props.this}
+              this={props.this}
               // applicationNo={props.applicationNo}
               // examOpt={props.examOpt}
               // quantVerbal={props.quantVerbal}
@@ -428,12 +439,11 @@ const Application = (props) => {
           <reac.Col></reac.Col>
         </reac.Row>
       </reac.Container>
-     
     );
   } else if (props.this.state.isValidDate && props.this.state.applied) {
     return (
       // <div className="main-content">Dear Applicant you applied for GAT</div>
-      <AppliedApp this = {props.this}/>
+      <AppliedApp this={props.this} />
     );
   } else {
     console.log("else");
@@ -456,8 +466,7 @@ const ApplyGAT = (props) => {
   if (props.this.state.examOpt === "GAT") {
     return (
       <reac.Form onSubmit={props.this.handleSubmit}>
-      
-        <p style={{ color: "red", fontSize: '15px' }} id="alerts"></p>
+        <p style={{ color: "red", fontSize: "15px" }} id="alerts"></p>
         <reac.Form.Group className="formBasicUsername">
           <reac.Form.Label>Application Number*</reac.Form.Label>
           <reac.Form.Control
@@ -503,7 +512,11 @@ const ApplyGRE = (props) => {
         <p style={{ color: "red" }} id="alerts"></p>
         <reac.Form.Group className="formBasicUsername">
           <reac.Form.Label>Application Number</reac.Form.Label>
-          <reac.Form.Control type="text" readOnly value={props.this.state.applicationNo} />
+          <reac.Form.Control
+            type="text"
+            readOnly
+            value={props.this.state.applicationNo}
+          />
         </reac.Form.Group>
         <reac.Form.Group controlId="formBasicEmail">
           <reac.Form.Label>Quant + Verbal</reac.Form.Label>
@@ -569,8 +582,11 @@ const AppliedApp = (props) => {
   let button = <reac.Button onClick={props.this.editApplication}></reac.Button>;
   if (props.this.state.applied && props.this.state.payment !== "paid") {
     button = (
-      <reac.Button onClick={props.this.editApplication} style={{width:"auto"}}>
-        CLICK HERE TO EDIT YOUR APPLICATION
+      <reac.Button
+        onClick={props.this.editApplication}
+        style={{ width: "auto" }}
+      >
+        Edit Your Application
       </reac.Button>
     );
   }
@@ -582,38 +598,72 @@ const AppliedApp = (props) => {
   }
 
   return (
-    <div className="container" lg={"auto"} md={"auto"} sm={"auto"} xs={"auto"} style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
-
-    <div className="table" style={{justifyContent: "center", alignItems: "center"}}>
-      <br></br>
-      <Table responsive="md" striped bordered hover style = {{fontFamily:"Roboto", width: '100%'}}>
-        <thead>
-          <tr>
-            <th>Application Number</th>
-            <th>Test Center</th>
-            <th>Payment Details</th>
-            <th>Exam Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{applicationNo}</td>
-            <td>{testCenter}</td>
-            <td>{paymentStatus}</td>
-            <td>{appType}</td>
-          </tr>
-          <tr>
-            <td className="editButton" colSpan="4">
-              {button}
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-
+    <div
+      className="container"
+      lg={"auto"}
+      md={"auto"}
+      sm={"auto"}
+      xs={"auto"}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        className="table"
+        style={{ justifyContent: "center", alignItems: "center" }}
+      >
+        <br></br>
+        <Table
+          responsive="md"
+          striped
+          bordered
+          hover
+          style={{ fontFamily: "Roboto", width: "100%" }}
+        >
+          <thead>
+            <tr>
+              <th>Application Number</th>
+              <th>Test Center</th>
+              <th>Payment Details</th>
+              <th>Exam Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{applicationNo}</td>
+              <td>{testCenter}</td>
+              <td>{paymentStatus}</td>
+              <td>{appType}</td>
+            </tr>
+            <tr>
+              <td>
+                <PayStatus status={paymentStatus} />
+              </td>
+              <td className="editButton">{button}</td>
+            </tr>
+          </tbody>
+        </Table>
+        <br></br>
+        <br></br>
+      </div>
     </div>
-
-    </div>
-
-
   );
+};
+
+const PayStatus = (props) => {
+  if (props.status === "done") {
+    return (
+      <div>
+        <reac.Button onClick={printDiv}>Hall Ticket</reac.Button>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Payments paymentStatus={props.status} style={{ paddingLeft: 100 }} />
+      </div>
+    );
+  }
 };

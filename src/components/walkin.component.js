@@ -7,9 +7,9 @@ import Select from "react-select";
 import Table from "react-bootstrap/Table";
 import "./GatApplication.css";
 import "./profile.css";
-import "./hrTags.css"
-
-
+import "./hrTags.css";
+import Payments from "./payment1.component";
+import printDiv from "./hallticket.component";
 
 export default class WalkinApplication extends Component {
   constructor() {
@@ -33,7 +33,10 @@ export default class WalkinApplication extends Component {
       email: email,
     };
     axios
-      .post("https://flask-deploy-admissions.herokuapp.com/walkin", emailDetails)
+      .post(
+        "https://flask-deploy-admissions.herokuapp.com/walkin",
+        emailDetails
+      )
       .then((response) => {
         const data = response.data;
         const walkinDetails = data.walkinDetails;
@@ -88,15 +91,19 @@ export default class WalkinApplication extends Component {
       applicationNo: applicationNo,
       testCenter: testCenter,
     };
-    if (this.state.testCenter === "" || this.state.testCenter=== "N/A") {
-      document.getElementById("alerts").innerHTML = "Test center should be selected";
+    if (this.state.testCenter === "" || this.state.testCenter === "N/A") {
+      document.getElementById("alerts").innerHTML =
+        "Test center should be selected";
       this.setState({
-        testCenter: ""
-      })
+        testCenter: "",
+      });
       return;
     }
     axios
-      .post("https://flask-deploy-admissions.herokuapp.com/walkinDetails", walkinDetails)
+      .post(
+        "https://flask-deploy-admissions.herokuapp.com/walkinDetails",
+        walkinDetails
+      )
       .then((result) => {
         if (result.data.statuscode === "200") {
           this.setState({
@@ -112,62 +119,64 @@ export default class WalkinApplication extends Component {
         console.log("errors");
       });
   };
-  
+
   render() {
     const userDetails = JSON.parse(localStorage.getItem("state"));
-    const image_url   ="https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/"+localStorage.getItem("email")+".jpeg" ;
-    console.log("walkin", userDetails.image_url)
+    const image_url =
+      "https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/" +
+      localStorage.getItem("email") +
+      ".jpeg";
+    console.log("walkin", userDetails.image_url);
     return (
       <div>
         <Navbar />
 
         <div className="container">
-    <div className="view-account" style={{padding:'10px'}}>
-      <section className="module">
-        <div className="module-inner">
-          <div className="side-bar">
+          <div className="view-account" style={{ padding: "10px" }}>
+            <section className="module">
+              <div className="module-inner">
+                <div className="side-bar">
+                  <div className="user-info" style={{ marginTop: "50px" }}>
+                    <img
+                      id="pp"
+                      className="img-profile img-circle img-responsive center-block"
+                      src={image_url}
+                      alt=""
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src =
+                          "https://paradisevalleychristian.org/wp-content/uploads/2017/01/Blank-Profile.png";
+                      }}
+                    />
 
-
-             <div className="user-info" style={{marginTop:'50px'}}>
-             <img id="pp"                     
-                     className="img-profile img-circle img-responsive center-block"
-                     src={image_url} 
-                     alt=""
-                     onError={(e)=>{e.target.onerror = null; e.target.src="https://paradisevalleychristian.org/wp-content/uploads/2017/01/Blank-Profile.png"}} 
-                     />
-                     
-                <ul className="meta list list-unstyled">
-                  <li className="name">
-                    <h4>{userDetails.full_name}</h4>
-                  </li>
-                  <li className="email">
-                    <a href >{userDetails.email}</a>
-                  </li>
-                  {/* <label className="label label-info">Applicant</label> */      }
-
-                </ul>
-            </div>
-
-
-            <nav className="side-menu">
-              <ul className="nav">
-              
-                      <li>
-                      <Link className="nav-link" to={"/profile"}>
-                          <span className="fa fa-user"></span> Profile                      
-                          </Link>
+                    <ul className="meta list list-unstyled">
+                      <li className="name">
+                        <h4>{userDetails.full_name}</h4>
                       </li>
-                       
+                      <li className="email">
+                        <a href>{userDetails.email}</a>
+                      </li>
+                      {/* <label className="label label-info">Applicant</label> */}
+                    </ul>
+                  </div>
+
+                  <nav className="side-menu">
+                    <ul className="nav">
+                      <li>
+                        <Link className="nav-link" to={"/profile"}>
+                          <span className="fa fa-user"></span> Profile
+                        </Link>
+                      </li>
 
                       <li>
-                      <Link className="nav-link" to={"/gat"}>
+                        <Link className="nav-link" to={"/gat"}>
                           <span className="fa fa-th"></span> GAT
-                          </Link>
+                        </Link>
                       </li>
                       <li className="active">
-                      <Link className="nav-link" to={"/walkin"}>
-                          <span className="fa fa-clock-o"></span> Walkin                      
-                          </Link>
+                        <Link className="nav-link" to={"/walkin"}>
+                          <span className="fa fa-clock-o"></span> Walkin
+                        </Link>
                       </li>
 
                       {/* <li>
@@ -176,23 +185,27 @@ export default class WalkinApplication extends Component {
                           </Link>
                       </li>
                        */}
-              </ul>
-            </nav>
-          </div>
-          <div className="content-panel">
-          <hr style={{marginTop:'100px'}}id="seven" data-symbol="Walkin"></hr>
+                    </ul>
+                  </nav>
+                </div>
+                <div className="content-panel">
+                  <hr
+                    style={{ marginTop: "100px" }}
+                    id="seven"
+                    data-symbol="Walkin"
+                  ></hr>
 
-        <Application
-        this = {this}
-          // applied={this.state.applied}
-          // applicationNo={this.state.applicationNo}
-          // isValidDate={this.state.isValidDate}
-          // accepted={this.state.accepted}
-          // acceptSubmit={this.acceptSubmit}
-          // handleSubmit={this.handleSubmit}
-          // handleDropdownChange={this.handleDropdownChange}
-        />
-        {/* <AppliedApp
+                  <Application
+                    this={this}
+                    // applied={this.state.applied}
+                    // applicationNo={this.state.applicationNo}
+                    // isValidDate={this.state.isValidDate}
+                    // accepted={this.state.accepted}
+                    // acceptSubmit={this.acceptSubmit}
+                    // handleSubmit={this.handleSubmit}
+                    // handleDropdownChange={this.handleDropdownChange}
+                  />
+                  {/* <AppliedApp
           applied={this.state.applied}
           applicationNo={this.state.applicationNo}
           testCenter={this.state.testCenter}
@@ -201,13 +214,11 @@ export default class WalkinApplication extends Component {
           totalScore={this.state.totalScore}
         /> */}
                 </div>
+              </div>
+              <p align="center">MSIT Admissions @2020</p>
+            </section>
+          </div>
         </div>
-<p align = "center">MSIT Admissions @2020</p>
-
-      </section>
-    </div>
-  </div>
-     
       </div>
     );
   }
@@ -221,17 +232,15 @@ const Application = (props) => {
     console.log("not applied", props.this.state.applied);
     return (
       <reac.Container className="main-content">
-        <Walkin1 this = {props.this}  />
-        <Walkin2
-          this={props.this}
-        />
+        <Walkin1 this={props.this} />
+        <Walkin2 this={props.this} />
       </reac.Container>
     );
   } else if (props.this.state.isValidDate & props.this.state.applied) {
     console.log("applied", props.this.state.applied);
     return (
       <div>
-        <AppliedApp this = {props.this}/>
+        <AppliedApp this={props.this} />
       </div>
     );
   } else {
@@ -249,9 +258,7 @@ const Walkin1 = (props) => {
   if (props.this.state.accepted === false) {
     return (
       <div>
-
         <reac.Row>
-
           <reac.Col className="note-box">
             <h5>
               Note: Dear applicant walk-in entrance test can be taken{" "}
@@ -308,8 +315,7 @@ const Walkin2 = (props) => {
     return (
       <div>
         <reac.Form onSubmit={props.this.handleSubmit}>
-          
-          <p style={{ color: "red", fontSize:'15px'}} id="alerts"></p>
+          <p style={{ color: "red", fontSize: "15px" }} id="alerts"></p>
           <reac.Col className="note-box">
             <h5>
               Note: Dear applicant walk-in entrance test can be taken{" "}
@@ -357,7 +363,7 @@ const Walkin2 = (props) => {
             </Link>
           </div>
         </reac.Form>
-        </div>
+      </div>
     );
   } else {
     return <div></div>;
@@ -377,19 +383,38 @@ const AppliedApp = (props) => {
     slot = "";
     totalScore = "";
   }
-    return (
-      <div className="container" style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
-
-      
-      <div className="table" style={{justifyContent: "center", alignItems: "center"}}>
+  return (
+    <div
+      className="container"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div
+        className="table"
+        style={{ justifyContent: "center", alignItems: "center" }}
+      >
         <br></br>
-        <Table responsive="md" striped bordered hover style = {{fontFamily:"Roboto", width: '100%', justifyContent: "center", alignItems: "center"}}>
+        <Table
+          responsive="md"
+          striped
+          bordered
+          hover
+          style={{
+            fontFamily: "Roboto",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <thead>
             <tr>
-              <th style = {{width : 'auto'}}>Application Number</th>
+              <th style={{ width: "auto" }}>Application Number</th>
               <th>Test Center</th>
               <th>Payment Details</th>
-              <th>Date {'&'} Slot</th>
+              <th>Date {"&"} Slot</th>
               <th>Total Score</th>
             </tr>
           </thead>
@@ -401,10 +426,30 @@ const AppliedApp = (props) => {
               <td>{slot}</td>
               <td>{totalScore}</td>
             </tr>
+            <tr>
+              <td>
+                <PayStatus status={paymentStatus} />
+              </td>
+            </tr>
           </tbody>
         </Table>
       </div>
+    </div>
+  );
+};
 
+const PayStatus = (props) => {
+  if (props.status === "done") {
+    return (
+      <div>
+        <reac.Button onClick={printDiv}>Hall Ticket</reac.Button>
       </div>
     );
+  } else {
+    return (
+      <div>
+        <Payments paymentStatus={props.status} style={{ paddingLeft: 100 }} />
+      </div>
+    );
+  }
 };

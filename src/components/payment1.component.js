@@ -30,7 +30,7 @@ const paymentHandler = async (e) => {
         alert(" payment sucessfull || status will be updated once Verified");
         console.log(response);
         const paymentId = response.razorpay_payment_id;
-        const url = `http://localhost:5000/fetch/${paymentId},${postData.email}`;
+        const url = `http://localhost:5000/fetch2/${paymentId},${postData.email}`;
         const captureResponse = await Axios.get(url);
         console.log(captureResponse.data);
         window.location = "/profile";

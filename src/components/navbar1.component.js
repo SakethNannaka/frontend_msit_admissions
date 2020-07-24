@@ -20,7 +20,11 @@ export default function Navbar() {
     // <reac.Navbar collapseOnSelect expand="lg" bg="success" variant="light" fixed = "top">
     <reac.Navbar
       collapseOnSelect
-      style={{ padding: "10px", backgroundColor: "#00284d" ,fontSize:"medium"}}
+      style={{
+        padding: "10px",
+        backgroundColor: "#00284d",
+        fontSize: "medium",
+      }}
       fixed="top"
       variant="warning"
     >
@@ -31,11 +35,15 @@ export default function Navbar() {
       <reac.Navbar.Collapse id="responsive-navbar-nav">
         <reac.Nav className="mr-auto"></reac.Nav>
         <reac.Nav>
-          <reac.NavDropdown title="Account" id="collasible-nav-dropdown" >
+          <reac.NavDropdown title="Account" id="collasible-nav-dropdown">
             <reac.NavDropdown.Item>
               <Link
                 to={"/profile"}
-                style={{ textDecoration: "none", color: "black" ,fontSize:"medium" }}
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontSize: "medium",
+                }}
               >
                 Home
               </Link>
@@ -43,7 +51,11 @@ export default function Navbar() {
             <reac.NavDropdown.Item>
               <Link
                 to={"/changepassword"}
-                style={{ textDecoration: "none", color: "black" ,fontSize:"medium"}}
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontSize: "medium",
+                }}
               >
                 Change Password
               </Link>
@@ -51,13 +63,17 @@ export default function Navbar() {
             <reac.NavDropdown.Item>
               <Link
                 to={"/contactus"}
-                style={{ textDecoration: "none", color: "black",fontSize:"medium" }}
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontSize: "medium",
+                }}
               >
                 Help
               </Link>
             </reac.NavDropdown.Item>
-            <reac.NavDropdown.Item style={{fontSize:"medium"}}>
-              <a href onClick={handleLogout} >
+            <reac.NavDropdown.Item style={{ fontSize: "medium" }}>
+              <a href onClick={handleLogout}>
                 Logout
               </a>
             </reac.NavDropdown.Item>
@@ -68,11 +84,11 @@ export default function Navbar() {
               Home
             </Link>
           </reac.NavItem>
-          <reac.NavItem>
+          {/* <reac.NavItem>
                 <Link className="nav-link" to={"/payments"}>
                   payments
                 </Link>
-              </reac.NavItem>
+              </reac.NavItem> */}
         </reac.Nav>
       </reac.Navbar.Collapse>
     </reac.Navbar>
