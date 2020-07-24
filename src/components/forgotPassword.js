@@ -173,7 +173,11 @@ class ForgotPassword extends React.Component {
               </a>
             </div>
             <br></br>
-            <h4 align="center">Forgot Password</h4>
+            <hr
+              style={{ marginTop: "80px" }}
+              id="seven"
+              data-symbol="Forgot Password"
+            ></hr>
             <br></br>
             <p style={{ color: "red" }} id="alerts"></p>
             <reac.Form.Group className="formBasicEmail">

@@ -300,11 +300,6 @@ export default class GatApplication extends Component {
                           <span className="fa fa-clock-o"></span> Walkin
                         </Link>
                       </li>
-                      {/* <li>
-                      <a href >
-                          <span className="fa fa-cog"></span> Edit Profile
-                          </a>
-                      </li> */}
                     </ul>
                   </nav>
                 </div>
@@ -315,33 +310,7 @@ export default class GatApplication extends Component {
                     data-symbol="GAT/GRE"
                   ></hr>
 
-                  <Application
-                    this={this}
-                    // applied={this.state.applied}
-                    // examOpt={this.state.examOpt}
-                    // applicationNo={this.state.applicationNo}
-                    // quantVerbal={this.state.quantVerbal}
-                    // analytical={this.state.analytical}
-                    // quantVerbalError={this.state.quantVerbalError}
-                    // analyticalError={this.state.analyticalError}
-                    // isValidDate={this.state.isValidDate}
-                    // buttonDisabled={this.state.buttonDisabled}
-                    // onChange={this.onChange}
-                    // handleChange={this.handleChange}
-                    // handleSubmit={this.handleSubmit}
-                    // handleDropdownChange={this.handleDropdownChange}
-                  />
-                  {/* <AppliedApp
-        this = {this}
-          applied={this.state.applied}
-          applicationNo={this.state.applicationNo}
-          quantVerbal={this.state.quantVerbal}
-          analytical={this.state.analytical}
-          testCenter={this.state.testCenter}
-          paymentStatus={this.state.paymentStatus}
-          appType={this.state.appType}
-          editApplication={this.editApplication}
-        /> */}
+                  <Application this={this} />
                 </div>
                 <p align="center">MSIT Admissions @2020</p>
               </div>
@@ -361,7 +330,7 @@ const Application = (props) => {
     return (
       <reac.Container
         className="main-content"
-        style={{ borderRadius: "5px", padding: "20px" }}
+        // style={{ borderRadius: "5px", padding: "20px" }}
       >
         <reac.Row>
           <reac.Col>
@@ -417,24 +386,8 @@ const Application = (props) => {
         <reac.Row>
           <reac.Col></reac.Col>
           <reac.Col>
-            <ApplyGAT
-              this={props.this}
-              // examOpt={props.examOpt}
-              // applicationNo={props.applicationNo}
-              // handleDropdownChange={props.handleDropdownChange}
-              // handleSubmit={props.handleSubmit}
-            />
-            <ApplyGRE
-              this={props.this}
-              // applicationNo={props.applicationNo}
-              // examOpt={props.examOpt}
-              // quantVerbal={props.quantVerbal}
-              // quantVerbalError={props.quantVerbalError}
-              // analytical={props.analytical}
-              // analyticalError={props.analyticalError}
-              // handleChange={props.handleChange}
-              // handleSubmit={props.handleSubmit}
-            />
+            <ApplyGAT this={props.this} />
+            <ApplyGRE this={props.this} />
           </reac.Col>
           <reac.Col></reac.Col>
         </reac.Row>
@@ -467,6 +420,7 @@ const ApplyGAT = (props) => {
     return (
       <reac.Form onSubmit={props.this.handleSubmit}>
         <p style={{ color: "red", fontSize: "15px" }} id="alerts"></p>
+
         <reac.Form.Group className="formBasicUsername">
           <reac.Form.Label>Application Number*</reac.Form.Label>
           <reac.Form.Control
@@ -477,6 +431,7 @@ const ApplyGAT = (props) => {
             value={props.this.state.applicationNo}
           />
         </reac.Form.Group>
+
         <reac.Form.Group>
           <label>Test Centre*</label>
           <div>
@@ -490,10 +445,12 @@ const ApplyGAT = (props) => {
             </div>
           </div>
         </reac.Form.Group>
+
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
           <reac.Button variant="primary" type="submit">
             Apply
           </reac.Button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <Link to="/profile">
             <reac.Button variant="primary">Cancel</reac.Button>
           </Link>

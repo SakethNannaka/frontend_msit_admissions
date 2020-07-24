@@ -1,18 +1,16 @@
-// <html>
-// <head>
-// <link rel="stylesheet" type="text/css" href="style.css"/>
-// </head>
-// <body>
+// import "./style.css";
+import ri_1 from "../ri_1.jpeg";
+import ri_2 from "../ri_2.jpeg";
+import ri_5 from "../ri_5.jpeg";
+import ri_6 from "../ri_6.jpeg";
 
-// </body>
-// </html>
 export default function printDiv({ title }) {
   const email = localStorage.getItem("email");
   const userDetails = JSON.parse(localStorage.getItem("state"));
   var tmp = `<div style="position:absolute;top:0.64in;left:1.60in;width:6.17in;line-height:0.35in;"><span style="font-style:normal;font-weight:bold;font-size:20pt;font-family:Times;color:#000000">Consortium of Institutions of Higher Learning </span><span style="font-style:normal;font-weight:bold;font-size:20pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:1.02in;left:1.43in;width:6.42in;line-height:0.17in;"><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000">IIIT Campus, Gachibowli, Hyderabad - 32, Phone: 040-23001970,Mobile: 7799834583, 7799834585</span><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
-    <img style="position:absolute;top:1.29in;left:1.07in;width:6.96in;height:0.03in" src="ri_1.jpeg" />
-    <img style="position:absolute;top:1.50in;left:1.07in;width:1.50in;height:0.73in" src="ri_2.jpeg" />
+    <img style="position:absolute;top:1.29in;left:1.07in;width:6.96in;height:0.03in" src="${ri_1}" />
+    <img style="position:absolute;top:1.50in;left:1.07in;width:1.50in;height:0.73in" src="${ri_2}" />
     <div style="position:absolute;top:1.55in;left:3.21in;width:4.15in;line-height:0.25in;"><span style="font-style:normal;font-weight:bold;font-size:14pt;font-family:Times;color:#000000">Master of Science in Information Technology</span><span style="font-style:normal;font-weight:bold;font-size:14pt;font-family:Times;color:#000000"> </span><br/><DIV style="position:relative; left:1.17in;"><span style="font-style:normal;font-weight:bold;font-size:14pt;font-family:Times;color:#000000">Entrance Test 2019</span><span style="font-style:normal;font-weight:bold;font-size:14pt;font-family:Times;color:#000000"> </span><br/></SPAN></DIV></div>
     <div style="position:absolute;top:2.14in;left:4.45in;width:1.69in;line-height:0.28in;"><span style="font-style:normal;font-weight:bold;font-size:16pt;font-family:Times;color:#000000">HALLTICKET</span><span style="font-style:normal;font-weight:bold;font-size:16pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:2.94in;left:1.12in;width:1.29in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">Hall Ticket No :</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
@@ -22,7 +20,7 @@ export default function printDiv({ title }) {
     <div style="position:absolute;top:3.80in;left:1.12in;width:1.28in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">Payment Type :</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:3.80in;left:3.26in;width:0.76in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">ONLINE</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <img style="position:absolute;top:2.36in;left:6.87in;width:1.50in;height:1.93in" src="https://admissionsimagebucket.s3.ap-south-1.amazonaws.com/${email}.jpeg" />
-    <img style="position:absolute;top:4.72in;left:1.20in;width:7.09in;height:2.21in" src="ri_5.jpeg" />
+    <img style="position:absolute;top:4.72in;left:1.20in;width:7.09in;height:2.21in" src="${ri_5}" />
     <div style="position:absolute;top:5.08in;left:3.40in;width:0.54in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">Venue</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:5.00in;left:6.67in;width:1.06in;line-height:0.19in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">Time &amp; Date</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/><DIV style="position:relative; left:0.10in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">of the Test</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></DIV></div>
     <div style="position:absolute;top:5.61in;left:1.42in;width:3.42in;line-height:0.17in;"><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000">G Narayanamma Institute of Technology &amp; Science,</span><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
@@ -40,7 +38,7 @@ export default function printDiv({ title }) {
     <div style="position:absolute;top:8.23in;left:1.33in;width:2.66in;line-height:0.17in;"><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000">at the time of final admission, if granted.</span><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:9.39in;left:1.76in;width:1.78in;line-height:0.17in;"><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000">Signature of the Candidate</span><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:9.39in;left:6.49in;width:0.94in;line-height:0.17in;"><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000">(Dean, CIHL)</span><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
-    <img style="position:absolute;top:8.80in;left:5.93in;width:1.72in;height:0.42in" src="ri_6.jpeg" />`;
+    <img style="position:absolute;top:8.80in;left:5.93in;width:1.72in;height:0.42in" src="${ri_6}" />`;
   let mywindow = window.open(
     "",
     "PRINT",

@@ -52,12 +52,7 @@ class Payments extends Component {
   render() {
     return (
       <div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <Button
-          variant="primary"
-          style={{ width: "15%", alignItems: "center" }}
-          onClick={paymentHandler}
-        >
+        <Button variant="primary" onClick={paymentHandler}>
           Pay Now
         </Button>
       </div>

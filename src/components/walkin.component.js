@@ -105,7 +105,7 @@ export default class WalkinApplication extends Component {
         walkinDetails
       )
       .then((result) => {
-        if (result.data.statuscode === "200") {
+        if (result.data.statuscode == "200") {
           this.setState({
             slotDate: result.data.slotDate,
             paymentStatus: result.data.paymentStatus,
