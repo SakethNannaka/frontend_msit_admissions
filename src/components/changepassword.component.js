@@ -96,7 +96,6 @@ export default class ChangePassword extends Component {
                 <hr id="seven" data-symbol="Change Password"></hr>
 
                 <reac.Form onSubmit = {this.onSubmit} className = "login-form">
-                <h3>ChangePassword</h3>
                 <br></br>
 
                 <reac.Form.Group controlId="formBasicPassword">
@@ -111,7 +110,7 @@ export default class ChangePassword extends Component {
                 <reac.Form.Text id = "cfmpwd"></reac.Form.Text>
                 <br></br>
                 <br></br>
-                <reac.Button variant="primary" type="submit">
+                <reac.Button variant="primary" type="submit" block>
                     Submit
                 </reac.Button>
             </reac.Form>
