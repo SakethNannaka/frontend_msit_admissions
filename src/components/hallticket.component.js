@@ -1,4 +1,3 @@
-// import "./style.css";
 import ri_1 from "../ri_1.jpeg";
 import ri_2 from "../ri_2.jpeg";
 import ri_5 from "../ri_5.jpeg";
@@ -6,6 +5,7 @@ import ri_6 from "../ri_6.jpeg";
 
 export default function printDiv({ title }) {
   const email = localStorage.getItem("email");
+  const appNo = localStorage.getItem("appno");
   const userDetails = JSON.parse(localStorage.getItem("state"));
   var tmp = `<div style="position:absolute;top:0.64in;left:1.60in;width:6.17in;line-height:0.35in;"><span style="font-style:normal;font-weight:bold;font-size:20pt;font-family:Times;color:#000000">Consortium of Institutions of Higher Learning </span><span style="font-style:normal;font-weight:bold;font-size:20pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:1.02in;left:1.43in;width:6.42in;line-height:0.17in;"><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000">IIIT Campus, Gachibowli, Hyderabad - 32, Phone: 040-23001970,Mobile: 7799834583, 7799834585</span><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
@@ -14,7 +14,7 @@ export default function printDiv({ title }) {
     <div style="position:absolute;top:1.55in;left:3.21in;width:4.15in;line-height:0.25in;"><span style="font-style:normal;font-weight:bold;font-size:14pt;font-family:Times;color:#000000">Master of Science in Information Technology</span><span style="font-style:normal;font-weight:bold;font-size:14pt;font-family:Times;color:#000000"> </span><br/><DIV style="position:relative; left:1.17in;"><span style="font-style:normal;font-weight:bold;font-size:14pt;font-family:Times;color:#000000">Entrance Test 2019</span><span style="font-style:normal;font-weight:bold;font-size:14pt;font-family:Times;color:#000000"> </span><br/></SPAN></DIV></div>
     <div style="position:absolute;top:2.14in;left:4.45in;width:1.69in;line-height:0.28in;"><span style="font-style:normal;font-weight:bold;font-size:16pt;font-family:Times;color:#000000">HALLTICKET</span><span style="font-style:normal;font-weight:bold;font-size:16pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:2.94in;left:1.12in;width:1.29in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">Hall Ticket No :</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
-    <div style="position:absolute;top:2.94in;left:3.26in;width:0.91in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">202G00003</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
+    <div style="position:absolute;top:2.94in;left:3.26in;width:0.91in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">${appNo}</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:3.37in;left:1.12in;width:1.94in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">Name of the Candidate :</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:3.37in;left:3.26in;width:2.13in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">${userDetails.full_name}</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <div style="position:absolute;top:3.80in;left:1.12in;width:1.28in;line-height:0.21in;"><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000">Payment Type :</span><span style="font-style:normal;font-weight:bold;font-size:12pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
@@ -40,19 +40,22 @@ export default function printDiv({ title }) {
     <div style="position:absolute;top:9.39in;left:6.49in;width:0.94in;line-height:0.17in;"><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000">(Dean, CIHL)</span><span style="font-style:normal;font-weight:bold;font-size:10pt;font-family:Times;color:#000000"> </span><br/></SPAN></div>
     <img style="position:absolute;top:8.80in;left:5.93in;width:1.72in;height:0.42in" src="${ri_6}" />`;
   let mywindow = window.open(
-    "",
+    "hallticket",
     "PRINT",
     "height=650,width=900,top=100,left=150"
   );
-  mywindow.document.write(
-    `<html><head><title>${title}</title>// <link rel="stylesheet" type="text/css" href="style.css"/>`
-  );
+  let title1 = "hallticket";
+  mywindow.document.write(`<html><head><title>${title1}</title>`);
   mywindow.document.write("</head><body >");
   mywindow.document.write(tmp);
   mywindow.document.write("</body></html>");
+  mywindow.document.title = title1;
   mywindow.document.close(); // necessary for IE >= 10
   mywindow.focus(); // necessary for IE >= 10*/
-  mywindow.print();
-  mywindow.close();
+  mywindow.onload = function () {
+    mywindow.print();
+    mywindow.close();
+  };
+
   return true;
 }

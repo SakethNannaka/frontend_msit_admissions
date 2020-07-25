@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "./navbar1.component";
-import "./profile.css";
 import Axios from "axios";
 import { Button } from "react-bootstrap";
 

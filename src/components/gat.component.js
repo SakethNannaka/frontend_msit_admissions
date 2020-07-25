@@ -67,6 +67,7 @@ export default class GatApplication extends Component {
         console.log("gatdetails", gatDetails);
         if (data.applied) {
           console.log("appno", gatDetails.appNo);
+          localStorage.setItem("appno", gatDetails.appNo);
           this.setState({
             applicationNo: gatDetails.appNo,
             testCenter: gatDetails.testCenter,
