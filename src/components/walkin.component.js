@@ -40,9 +40,9 @@ export default class WalkinApplication extends Component {
       .then((response) => {
         const data = response.data;
         const walkinDetails = data.walkinDetails;
-        if (walkinDetails.appNo) {
-          localStorage.setItem("appno", walkinDetails.appNo);
-        }
+        // if (walkinDetails.appNo) {
+        //   localStorage.setItem("appno", walkinDetails.appNo);
+        // }
         if (data.applied) {
           this.setState({
             applicationNo: walkinDetails.appNo,
@@ -54,6 +54,7 @@ export default class WalkinApplication extends Component {
             slotDate: walkinDetails.slotDate,
             totalScore: walkinDetails.totalScore,
           });
+          localStorage.setItem("appno", walkinDetails.appNo);
         } else {
           console.log("not applied");
           this.setState({
